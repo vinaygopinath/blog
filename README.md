@@ -1,2 +1,6 @@
-# blog
-Blog - blog.vinaygopinath.me
+# Blog
+
+This Jekyll blog is set up as a project site as a workaround for [custom domain problems on GitHub](https://github.com/isaacs/github/issues/547). 
+The actual blog content is on the `gh-pages` branch.
+
+[blog.vinaygopinath.me](http://blog.vinaygopinath.me)
