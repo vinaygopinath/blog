@@ -41,10 +41,11 @@ html, body {
   overflow-x: hidden;
 }
 html {
-  font-family: "PT Serif", Georgia, "Times New Roman", serif;
+  font-family: "Noto Sans", Georgia, "Times New Roman", serif;
 }
 h1, h2, h3, h4, h5, h6 {
-  font-family: "PT Sans", Helvetica, Arial, sans-serif;
+  /*font-family: "PT Sans", Helvetica, Arial, sans-serif;*/
+  font-family: "Lato", Helvetica, Arial, sans-serif;
   font-weight: 400;
   color: #313131;
   letter-spacing: -.025rem;
@@ -294,7 +295,15 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 4em;
 }
 
+.post:first-child {
+    margin-top: 2em;
+}
+
 /* Blog post or page title */
+
+.page-title {
+    text-transform: capitalize;
+}
 
 .page-title, .post-title, .post-title a {
   color: #303030;
@@ -310,6 +319,8 @@ h1, h2, h3, h4, h5, h6 {
   margin-top: -.5rem;
   margin-bottom: 1rem;
   color: #9a9a9a;
+  font-size: 0.65rem;
+  text-transform: uppercase;
 }
 
 /* Related posts */
