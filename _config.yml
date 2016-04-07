@@ -1,0 +1,26 @@
+# Permalinks
+#
+# Use of `relative_permalinks` ensures post links from the index work properly.
+permalink: pretty
+
+# Setup
+title: Vinay Gopinath
+tagline: 'Adventures with technology and travel'
+description: 'Adventures with technology and travel'
+baseurl: ''
+paginate: 5
+paginate_path: "page:num"
+
+# About/contact
+author:
+name:              Vinay Gopinath
+email:             vinay@vinaygopinath.me
+
+# Custom vars
+version:             1.0.0
+gems:                [jekyll-paginate]
+exclude: ["lib", "config.rb", ".sass-cache", "Capfile", "config", "log", "Rakefile", "Rakefile.rb", "tmp", "Gemfile", "Gemfile.lock", "README.md", "LICENSE", "_drafts"]
+markdown: kramdown
+kramdown:
+input: GFM
+syntax_highlighter: rouge
