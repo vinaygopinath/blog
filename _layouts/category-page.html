@@ -1,0 +1,47 @@
+---
+layout: default
+---
+
+<div class="page">
+  <h1 class="page-title">{{ page.paginate.category }}
+      {% if paginator.page > 1 %}
+        - Page {{paginator.page}}
+      {% endif %}
+  </h1>
+  
+  <div class="posts">
+    {% assign index = true %} 
+    {% for post in paginator.posts %} 
+    {% assign content = post.content %}
+    <div class="post">
+        <h2 class="post-title">
+      <a href="{{ site.baseurl }}{{ post.url }}">
+        {{ post.title }}
+      </a>
+    </h2>
+
+        <span class="post-date">{{ post.date | date_to_string }}</span> {{ post.excerpt }}
+    </div>
+    {% unless post == paginator.posts.last %}
+    <hr> 
+    {% endunless %}
+    {% endfor %}
+</div>
+
+<div class="pagination">
+  {% if paginator.next_page %}
+  <a class="pagination-item older" href="{{paginator.next_page_path}}">Older</a>
+  {% else %}
+  <span class="pagination-item older">Older</span>
+  {% endif %}
+  {% if paginator.previous_page %}
+  {% if paginator.page == 2 %}
+  <a class="pagination-item newer" href="{{ site.baseurl }}/{{page.paginate.category}}">Newer</a>
+  {% else %}
+  <a class="pagination-item newer" href="{{paginator.previous_page_path}}">Newer</a>
+  {% endif %}
+  {% else %}
+  <span class="pagination-item newer">Newer</span>
+  {% endif %}
+</div>
+</div>

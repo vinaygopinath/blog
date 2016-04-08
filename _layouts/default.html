@@ -1,32 +1,29 @@
-<!DOCTYPE html>
-<html lang="en-us">
+--- 
+layout: bare
+---
 
-{% include head.html %}
+{% include sidebar.html %}
 
-<body>
-
-  {% include sidebar.html %}
-
-  <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+<!-- Wrap is the content to shift when toggling the sidebar. We wrap the
   content to avoid any CSS collisions with our real content. -->
-  <div class="wrap">
+<div class="wrap">
     <div class="masthead">
-      <div class="container">
-        <h3 class="masthead-title">
+        <div class="container">
+            <h3 class="masthead-title">
           <a href="{{ site.baseurl }}/" title="Home">{{ site.title }}</a>
           <small>{{ site.tagline }}</small>
         </h3>
-      </div>
+        </div>
     </div>
 
     <div class="container content">
-      {{ content }}
+        {{ content }}
     </div>
-  </div>
+</div>
 
-  <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+<label for="sidebar-checkbox" class="sidebar-toggle"></label>
 
-  <script>
+<script>
     (function(document) {
       var toggle = document.querySelector('.sidebar-toggle');
       var sidebar = document.querySelector('#sidebar');
@@ -42,7 +39,4 @@
         checkbox.checked = false;
       }, false);
     })(document);
-  </script>
-</body>
-
-</html>
+</script>
