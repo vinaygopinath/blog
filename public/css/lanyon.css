@@ -291,8 +291,10 @@ h1, h2, h3, h4, h5, h6 {
 * page is wrapped in `.page` and is only used on the page layout.
 */
 
-.page, .post {
+.page {
   margin-bottom: 4em;
+} .post {
+  margin-bottom: 2em;
 }
 
 .post:first-child {
