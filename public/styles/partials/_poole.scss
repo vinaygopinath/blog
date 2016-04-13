@@ -1,0 +1,274 @@
+//colors
+$color_fuscous_gray_approx: #515151;
+$white: #fff;
+$color_curious_blue_approx: #268bd2;
+$color_mine_shaft_approx: #313131;
+$color_gallery_approx: #eee;
+$mercury: #e5e5e5;
+$color_contessa_approx: #bf616a;
+$color_alabaster_approx: #f9f9f9;
+$color_shark_approx: #252525;
+$boulder: #7a7a7a;
+$color_dove_gray_approx: #717171;
+
+//fonts
+$font_0: Helvetica Neue;
+$font_1: Helvetica;
+$font_2: Arial;
+$font_3: sans-serif;
+$font_4: Menlo;
+$font_5: Monaco;
+$font_6: Courier New;
+$font_7: monospace;
+$font_8: monospace;
+
+
+@include critical(true) {
+    //@extend-elements
+//original selectors
+//h1, h2, h3, h4, h5, h6
+%extend_1 {
+	margin-bottom: .5rem;
+	font-weight: bold;
+	line-height: 1.25;
+	color: $color_mine_shaft_approx;
+	text-rendering: optimizeLegibility;
+}
+
+
+* {
+	//Instead of the line below you could use @include box-sizing($bs)
+	box-sizing: border-box;
+}
+html {
+	margin: 0;
+	padding: 0;
+	font-family: $font_0, $font_1, $font_2, $font_3;
+	font-size: 16px;
+	line-height: 1.5;
+}
+body {
+	margin: 0;
+	padding: 0;
+	color: $color_fuscous_gray_approx;
+	background-color: $white;
+}
+@media(min-width: 38em) {
+	html {
+		font-size: 20px;
+	}
+}
+a {
+	color: $color_curious_blue_approx;
+	text-decoration: none;
+	strong {
+		color: inherit;
+	}
+	&:hover {
+		text-decoration: underline;
+	}
+	&:focus {
+		text-decoration: underline;
+	}
+}
+h1 {
+	@extend %extend_1;
+	font-size: 2rem;
+}
+h2 {
+	@extend %extend_1;
+	margin-top: 1rem;
+	font-size: 1.5rem;
+}
+h3 {
+	@extend %extend_1;
+	margin-top: 1.5rem;
+	font-size: 1.25rem;
+}
+h4 {
+	@extend %extend_1;
+	margin-top: 1rem;
+	font-size: 1rem;
+}
+h5 {
+	@extend %extend_1;
+	margin-top: 1rem;
+	font-size: 1rem;
+}
+h6 {
+	@extend %extend_1;
+	margin-top: 1rem;
+	font-size: 1rem;
+}
+p {
+	margin-top: 0;
+	margin-bottom: 1rem;
+}
+strong {
+	color: $color_mine_shaft_approx;
+}
+ul {
+	margin-top: 0;
+	margin-bottom: 1rem;
+}
+ol {
+	margin-top: 0;
+	margin-bottom: 1rem;
+}
+
+img {
+	display: block;
+	max-width: 100%;
+	margin: 0 0 1rem;
+	//Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+	border-radius: 5px;
+}
+table {
+	margin-bottom: 1rem;
+	width: 100%;
+	border: 1px solid $mercury;
+	border-collapse: collapse;
+}
+td {
+	padding: .25rem .5rem;
+	border: 1px solid $mercury;
+}
+th {
+	padding: .25rem .5rem;
+	border: 1px solid $mercury;
+}
+.lead {
+	font-size: 1.25rem;
+	font-weight: 300;
+}
+.message {
+	margin-bottom: 1rem;
+	padding: 1rem;
+	color: $color_dove_gray_approx;
+	background-color: $color_alabaster_approx;
+}
+.container {
+	max-width: 38rem;
+	padding-left: 1rem;
+	padding-right: 1rem;
+	margin-left: auto;
+	margin-right: auto;
+}
+tbody tr:nth-child(odd) {
+	td {
+		background-color: $color_alabaster_approx;
+	}
+	th {
+		background-color: $color_alabaster_approx;
+	}
+}
+}
+
+@include critical(false) {
+    dl {
+	margin-top: 0;
+	margin-bottom: 1rem;
+}
+dt {
+	font-weight: bold;
+}
+dd {
+	margin-bottom: .5rem;
+}
+hr {
+	position: relative;
+	margin: 1.5rem 0;
+	border: 0;
+	border-top: 1px solid $color_gallery_approx;
+	border-bottom: 1px solid $white;
+}
+abbr {
+	font-size: 85%;
+	font-weight: bold;
+	color: $color_fuscous_gray_approx;
+	text-transform: uppercase;
+}
+abbr[title] {
+	cursor: help;
+	border-bottom: 1px dotted $mercury;
+}
+code {
+	font-family: $font_4, $font_5, $font_6, $font_7;
+	padding: .25em .5em;
+	font-size: 85%;
+	color: $color_contessa_approx;
+	font-weight: bold;
+	background-color: $color_alabaster_approx;
+	//Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+	border-radius: 3px;
+}
+pre {
+	font-family: $font_4, $font_5, $font_6, $font_7;
+	display: block;
+	margin-top: 0;
+	margin-bottom: 1rem;
+	padding: 1rem;
+	font-size: .8rem;
+	line-height: 1.4;
+	white-space: pre;
+	white-space: pre-wrap;
+	//Instead of the line below you could use @include word-break($value)
+	word-break: break-all;
+	word-wrap: break-word;
+	background-color: $color_shark_approx;
+	code {
+		padding: 0;
+		font-size: 100%;
+		font-weight: normal;
+		color: inherit;
+		background-color: transparent;
+	}
+}
+
+.highlight {
+	margin-bottom: 1rem;
+	//Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+	border-radius: 4px;
+	pre {
+		margin-bottom: 0;
+	}
+}
+.gist {
+	.gist-file {
+		font-family: $font_4, $font_5, $font_6, $font_8 !important;
+		.gist-data {
+			font-size: .8rem !important;
+			line-height: 1.4;
+		}
+	}
+	.markdown-body {
+		padding: 15px;
+	}
+	pre {
+		padding: 0;
+		background-color: transparent;
+	}
+	code {
+		padding: 0;
+		color: inherit;
+		background-color: transparent;
+		//Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+		border-radius: 0;
+	}
+}
+blockquote {
+	padding: .5rem 1rem;
+	margin: .8rem 0;
+	color: $boulder;
+	border-left: .25rem solid $mercury;
+	p:last-child {
+		margin-bottom: 0;
+	}
+}
+@media(min-width: 30em) {
+	blockquote {
+		padding-right: 5rem;
+		padding-left: 1.25rem;
+	}
+}
+}

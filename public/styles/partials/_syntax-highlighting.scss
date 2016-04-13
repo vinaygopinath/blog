@@ -1,0 +1,75 @@
+@include critical(false) {
+    //Credit: http://sebastianpontow.de/css2compass/
+    //colors
+    $color_mountain_mist_approx: #999999;
+    $color_sun_approx: #f6aa11;
+    $color_suva_gray_approx: #888888;
+    $color_fuscous_gray_approx: #555555;
+    $color_silver_chalice_approx: #aaaaaa;
+    $color_pablo_approx: #75715e;
+    $color_cardinal_pink_approx: #960050;
+    $color_tundora_approx: #49483e;
+    $color_turquoise_blue_approx: #66d9ef;
+    $color_dull_lavender_approx: #ae81ff;
+    $color_golden_sand_approx: #e6db74;
+    $color_atlantis_approx: #a6e22e;
+    $white: #ffffff;
+    $color_radical_red_approx: #f92672;
+
+    .highlight {
+        color: $white;
+        table {
+            td {
+                padding: 5px;
+            }
+            pre {
+                margin: 0;
+            }
+        }
+        .gh {
+            color: $color_mountain_mist_approx;
+        }
+        .sr {
+            color: $color_sun_approx;
+        }
+        .go {
+            color: $color_suva_gray_approx;
+        }
+        .gp {
+            color: $color_fuscous_gray_approx;
+        }
+        .gu {
+            color: $color_silver_chalice_approx;
+        }
+        .nb {
+            color: $color_sun_approx;
+        }
+        .cm, .cp, .c1, .cs, .c, .cd {
+            color: $color_pablo_approx;
+        }
+        .err, .gr, .gt {
+            color: $color_cardinal_pink_approx;
+        }
+        .gd, .gi, .ge {
+            color: $color_tundora_approx;
+        }
+        .kc, .kd, .kr, .no, .kt {
+            color: $color_turquoise_blue_approx;
+        }
+        .mf, .mh, .il, .mi, .mo, .m, .mb, .mx, .sc, .se, .ss {
+            color: $color_dull_lavender_approx;
+        }
+        .sd, .s2, .sb, .sh, .si, .sx, .s1, .s {
+            color: $color_golden_sand_approx;
+        }
+        .na, .nc, .nd, .ne, .nf {
+            color: $color_atlantis_approx;
+        }
+        .vc, .nn, .n1, .ni, .bp, .vg, .vi, .nv, .w, .n, .py, .nx {
+            color: $white;
+        }
+        .ow, .nt, .k, .kv, .kn, .kp, .o {
+            color: $color_radical_red_approx;
+        }
+    }
+}

@@ -1,0 +1,9 @@
+
+$critical-css-only:true !default;
+@mixin critical($critical-only:true){
+  @if (($critical-css-only and $critical-only) or (not $critical-css-only and not $critical-only)){
+    @content;
+  }
+}
+
+//Credit: https://gist.github.com/benedfit/46da533805566141c42f
