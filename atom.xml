@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+ <title>Vinay Gopinath</title>
+ <link href="/atom.xml" rel="self"/>
+ <link href="/"/>
+ <updated>2016-04-14T00:23:19+02:00</updated>
+ <id></id>
+ <author>
+   <name></name>
+   <email></email>
+ </author>
+
+ 
+ <entry>
+   <title>Hello</title>
+   <link href="/tech/2016/02/17/hello/"/>
+   <updated>2016-02-17T10:41:00+01:00</updated>
+   <id>/tech/2016/02/17/hello</id>
+   <content type="html">&lt;p&gt;Hello,&lt;/p&gt;
+
+&lt;p&gt;Ghost is just not enough! I’d heard good things about Jekyll for sometime now, so I decided to check things out and host my blog on Github Pages.&lt;/p&gt;
+
+&lt;p&gt;I ran into a few issues&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Github Pages &lt;a href=&quot;https://github.com/isaacs/github/issues/547&quot;&gt;does not support&lt;/a&gt; setting a custom domain for a user site (&lt;code class=&quot;highlighter-rouge&quot;&gt;master&lt;/code&gt; branch) without affecting all project sites (&lt;code class=&quot;highlighter-rouge&quot;&gt;gh-pages&lt;/code&gt; branch) of that account. I wanted to added the custom domain &lt;a href=&quot;http://blog.vinaygopinath.me&quot;&gt;blog.vinaygopinath.me&lt;/a&gt; to the blog repository while keeping the &lt;code class=&quot;highlighter-rouge&quot;&gt;username.github.io/project&lt;/code&gt; demo site for &lt;a href=&quot;https://github.com/vinaygopinath/ngMeta&quot;&gt;ngMeta&lt;/a&gt;, but apparently that is not possible with GitHub. A support member suggested that I set up my blog as a project repo, as a workaround for the all-or-nothing redirection.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Jekyll does not seem to have support for paginated categories. I intend to split this blog into categories like travel, tech and other. While it is possible to list out posts in a category, &lt;a href=&quot;http://jekyllrb.com/docs/pagination/&quot;&gt;pagination does not support categories&lt;/a&gt; just yet. I hope a future release adds this feature. I’m not sure about the Jekyll community ecosystem - perhaps there’s a plugin that already does this.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+</content>
+ </entry>
+ 
+
+</feed>
