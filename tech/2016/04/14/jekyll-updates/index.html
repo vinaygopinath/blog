@@ -12,7 +12,7 @@
 
     <title>
          
-        Tech &middot; Vinay Gopinath
+        Jekyll updates &middot; Vinay Gopinath
         
     </title>
     
@@ -78,55 +78,167 @@ styles, `#sidebar-checkbox` for behavior. -->
     </div>
 
     <div class="container content">
-        <div class="page">
-  <h1 class="page-title">tech
-      
-  </h1>
-  
-  <div class="posts">
-     
-     
-    
-    <div class="post">
-        <h2 class="post-title">
-      <a href="/tech/2016/04/14/jekyll-updates/">
-        Jekyll updates
-      </a>
-    </h2>
+        <div class="post">
+  <h2 class="post-title">Jekyll updates</h2>
+  <span class="post-date">14 Apr 2016</span>
+  <p>I’ve been exploring the Jekyll ecosystem over the past couple of weeks, and consider me sold - I really like the simplicity of building a static site with pages, posts and collections. I know that neither Jekyll nor Ghost will dethrone WordPress as the layman’s choice of CMS, but given all of the work coming out of the node.js and Ruby camps, WordPress has got some stiff competition, and deservedly so.</p>
 
-        <span class="post-date">14 Apr 2016</span> <p>I’ve been exploring the Jekyll ecosystem over the past couple of weeks, and consider me sold - I really like the simplicity of building a static site with pages, posts and collections. I know that neither Jekyll nor Ghost will dethrone WordPress as the layman’s choice of CMS, but given all of the work coming out of the node.js and Ruby camps, WordPress has got some stiff competition, and deservedly so.</p>
+<h3 id="project-structure">Project Structure</h3>
 
+<p>While setting up a new Jekyll 3.0-powered site based on the Lanyon theme wasn’t hard, choosing a project structure that works for me took some time. I wanted my posts to be grouped within folders based on the category name, so I use this structure</p>
 
-    </div>
-    
-    <hr> 
-    
-     
-    
-    <div class="post">
-        <h2 class="post-title">
-      <a href="/tech/2016/02/17/hello/">
-        Hello
-      </a>
-    </h2>
-
-        <span class="post-date">17 Feb 2016</span> <p>Hello,</p>
-
-
-    </div>
-    
-    
+<div class="highlighter-rouge"><pre class="highlight"><code>  _posts
+    - tech
+      - 2016-04-14-tech-post-title.md
+      - 2016-03-29-another-tech-post-title.md 
+    - travel 
+      - 2016-04-10-travel-post-title.md
+      - 2016-03-09-another-travel-post-title.md 
+</code></pre>
 </div>
 
-<div class="pagination">
-  
-  <span class="pagination-item older">Older</span>
-  
-  
-  <span class="pagination-item newer">Newer</span>
-  
+<p>If you use Octopress, it’s easy to create a new post in a category with this command</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>   <span class="c">#Create a new post with the title "Post Title"</span>
+   <span class="c">#in the "tech" category with the current date</span>
+   octopress new post <span class="s2">"Post Title"</span> -D tech
+</code></pre>
 </div>
+
+<p>To maintain consistency, my <code class="highlighter-rouge">_pages</code> folder is organized like this:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>   _pages
+     - tech
+       - index.html
+     - travel
+       - index.html
+</code></pre>
 </div>
+
+<p>To get Jekyll to process these files, I had to add <code class="highlighter-rouge">_pages</code> to my <code class="highlighter-rouge">include</code> array in <code class="highlighter-rouge">_config.yml</code></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="s">include</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">_pages"</span><span class="pi">]</span>
+</code></pre>
+</div>
+
+<h3 id="pagination">Pagination</h3>
+
+<p>I found that I needed Octopress and octopress-paginate to set up paginated categories. I created a new file in <code class="highlighter-rouge">_layouts</code> called category-page.html with this content</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>   
+---
+layout: default
+---
+
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"page"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;h1</span> <span class="na">class=</span><span class="s">"page-title"</span><span class="nt">&gt;</span>{{ page.paginate.category }}
+      {% if paginator.page &gt; 1 %}
+        - Page {{paginator.page}}
+      {% endif %}
+  <span class="nt">&lt;/h1&gt;</span>
+  
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"posts"</span><span class="nt">&gt;</span>
+    {% assign index = true %} 
+    {% for post in paginator.posts %} 
+    {% assign content = post.content %}
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"post"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;h2</span> <span class="na">class=</span><span class="s">"post-title"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"{{ post.url }}"</span><span class="nt">&gt;</span>
+            {{ post.title }}
+          <span class="nt">&lt;/a&gt;</span>
+        <span class="nt">&lt;/h2&gt;</span>
+        <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"post-date"</span><span class="nt">&gt;</span>{{ post.date | date_to_string }}<span class="nt">&lt;/span&gt;</span> 
+        {{ post.excerpt }}
+    <span class="nt">&lt;/div&gt;</span>
+    {% unless post == paginator.posts.last %}
+    	<span class="nt">&lt;hr&gt;</span> 
+    {% endunless %}
+    {% endfor %}
+  <span class="nt">&lt;/div&gt;</span>
+
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pagination"</span><span class="nt">&gt;</span>
+      {% if paginator.next_page %}
+      <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"pagination-item older"</span> <span class="na">href=</span><span class="s">"{{paginator.next_page_path}}"</span><span class="nt">&gt;</span>Older<span class="nt">&lt;/a&gt;</span>
+      {% else %}
+      <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"pagination-item older"</span><span class="nt">&gt;</span>Older<span class="nt">&lt;/span&gt;</span>
+      {% endif %}
+      {% if paginator.previous_page %}
+      {% if paginator.page == 2 %}
+      <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"pagination-item newer"</span> <span class="na">href=</span><span class="s">"/{{page.paginate.category}}"</span><span class="nt">&gt;</span>Newer<span class="nt">&lt;/a&gt;</span>
+      {% else %}
+      <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"pagination-item newer"</span> <span class="na">href=</span><span class="s">"{{paginator.previous_page_path}}"</span><span class="nt">&gt;</span>Newer<span class="nt">&lt;/a&gt;</span>
+      {% endif %}
+      {% else %}
+      <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"pagination-item newer"</span><span class="nt">&gt;</span>Newer<span class="nt">&lt;/span&gt;</span>
+      {% endif %}
+    <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+
+</code></pre>
+</div>
+
+<p>Setting up a paginated category page is simply a matter of using <code class="highlighter-rouge">layout: category-page</code>. For example, this is my <code class="highlighter-rouge">_pages/tech/index.html</code></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="nn">---</span>
+<span class="s">layout</span><span class="pi">:</span> <span class="s">category-page</span>
+<span class="s">title</span><span class="pi">:</span> <span class="s">Tech</span>
+<span class="s">permalink</span><span class="pi">:</span> <span class="s2">"</span><span class="s">/tech/"</span>
+<span class="s">paginate</span><span class="pi">:</span>
+  <span class="s">category</span><span class="pi">:</span> <span class="s2">"</span><span class="s">tech"</span>
+<span class="nn">---</span>
+</code></pre>
+</div>
+
+<h3 id="sass">SASS</h3>
+
+<p>I’m a big fan of SASS, and I was happy to discover that Jekyll has <a href="https://jekyllrb.com/docs/assets/#sassscss">built-in support for SASS</a>. I’ve also taken to inlining critical CSS (<a href="https://www.youtube.com/watch?v=FEs2jgZBaQA">this long and insightful talk</a> by Addy Osmani helped me see the light) and I wanted to set it up for my site. A little bit of Google-fu led me to this <a href="https://gist.github.com/benedfit/46da533805566141c42f">gist</a> and this <a href="http://www.kevinsweet.com/inline-scss-jekyll-github-pages">post</a> that solved my problem without having to use Grunt or Gulp.</p>
+
+<h3 id="deploying-to-github-pages">Deploying to Github Pages</h3>
+<p>Lastly, since this site is hosted on Github Pages and Github approves a limited set of plugins (Octopress not being one of them), I had to resort to manually building and deploying my site. This can be done by setting up a <code class="highlighter-rouge">_deploy.yml</code> according to the specification <a href="https://github.com/octopress/octopress#git-deployment-configuration">here</a> and running</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>   octopress deploy
+</code></pre>
+</div>
+
+<p>Warning: Be sure to have a clean working environment by stashing/committing your files before running this command. I accidentally published a bunch of temp posts I’d created to test pagination because they were present (untracked , not stashed or committed) in the <code class="highlighter-rouge">_posts</code> folder and they ended up in the resulting Jekyll build. That’s what you get for not reading the <a href="https://github.com/octopress/octopress#isolate">manual</a></p>
+
+<p><a href="https://developers.google.com/speed/pagespeed/insights/?url=vinaygopinath.me">Pagespeed insights score</a> for the site:
+<img src="http://i.imgur.com/iJhrRzN.png" alt="99/100 on both mobile and desktop" /></p>
+
+
+</div>
+
+<div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+        this.page.url = 'https://vinaygopinath.me/tech/2016/04/14/jekyll-updates/';
+        this.page.identifier = '/tech/2016/04/14/jekyll-updates/';
+    };
+    (function() {
+        var d = document, s = d.createElement('script');
+        s.src = '//vinaygopinath.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>You don't seem to have Javascript enabled - To participate in the discussion, consider allowing Javascript on this site</noscript>
+
+<!--<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+    <li>
+      <h3>
+        <a href="/tech/2016/02/17/hello/">
+          Hello
+          <small>17 Feb 2016</small>
+        </a>
+      </h3>
+    </li>
+    
+  </ul>
+</div>-->
+
     </div>
 </div>
 
