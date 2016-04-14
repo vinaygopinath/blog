@@ -4,7 +4,7 @@
  <title>Vinay Gopinath</title>
  <link href="/atom.xml" rel="self"/>
  <link href="/"/>
- <updated>2016-04-14T11:34:33+02:00</updated>
+ <updated>2016-04-14T13:04:17+02:00</updated>
  <id></id>
  <author>
    <name></name>
@@ -19,7 +19,128 @@
    <id>/tech/2016/04/14/jekyll-updates</id>
    <content type="html">&lt;p&gt;I’ve been exploring the Jekyll ecosystem over the past couple of weeks, and consider me sold - I really like the simplicity of building a static site with pages, posts and collections. I know that neither Jekyll nor Ghost will dethrone WordPress as the layman’s choice of CMS, but given all of the work coming out of the node.js and Ruby camps, WordPress has got some stiff competition, and deservedly so.&lt;/p&gt;
 
-&lt;p&gt;While setting up a new Jekyll 3.0-powered site based on the Lanyon theme wasn’t hard, choosing a project structure that works for me took some time.&lt;/p&gt;
+&lt;h3 id=&quot;project-structure&quot;&gt;Project Structure&lt;/h3&gt;
+
+&lt;p&gt;While setting up a new Jekyll 3.0-powered site based on the Lanyon theme wasn’t hard, choosing a project structure that works for me took some time. I wanted my posts to be grouped within folders based on the category name, so I use this structure&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  _posts
+    - tech
+      - 2016-04-14-tech-post-title.md
+      - 2016-03-29-another-tech-post-title.md 
+    - travel 
+      - 2016-04-10-travel-post-title.md
+      - 2016-03-09-another-travel-post-title.md 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;If you use Octopress, it’s easy to create a new post in a category with this command&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;   &lt;span class=&quot;c&quot;&gt;#Create a new post with the title &quot;Post Title&quot;&lt;/span&gt;
+   &lt;span class=&quot;c&quot;&gt;#in the &quot;tech&quot; category with the current date&lt;/span&gt;
+   octopress new post &lt;span class=&quot;s2&quot;&gt;&quot;Post Title&quot;&lt;/span&gt; -D tech
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;To maintain consistency, my &lt;code class=&quot;highlighter-rouge&quot;&gt;_pages&lt;/code&gt; folder is organized like this:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;   _pages
+     - tech
+       - index.html
+     - travel
+       - index.html
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;To get Jekyll to process these files, I had to add &lt;code class=&quot;highlighter-rouge&quot;&gt;_pages&lt;/code&gt; to my &lt;code class=&quot;highlighter-rouge&quot;&gt;include&lt;/code&gt; array in &lt;code class=&quot;highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;s&quot;&gt;include&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;_pages&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;pagination&quot;&gt;Pagination&lt;/h3&gt;
+
+&lt;p&gt;I found that I needed Octopress and octopress-paginate to set up paginated categories. I created a new file in &lt;code class=&quot;highlighter-rouge&quot;&gt;_layouts&lt;/code&gt; called category-page.html with this content&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;   
+---
+layout: default
+---
+
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;page&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;h1&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;page-title&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;{{ page.paginate.category }}
+      {% if paginator.page &amp;gt; 1 %}
+        - Page {{paginator.page}}
+      {% endif %}
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/h1&amp;gt;&lt;/span&gt;
+  
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;posts&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    {% assign index = true %} 
+    {% for post in paginator.posts %} 
+    {% assign content = post.content %}
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;post&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;h2&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;post-title&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+          &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;{{ post.url }}&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+            {{ post.title }}
+          &lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;/h2&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;span&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;post-date&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;{{ post.date | date_to_string }}&lt;span class=&quot;nt&quot;&gt;&amp;lt;/span&amp;gt;&lt;/span&gt; 
+        {{ post.excerpt }}
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+    {% unless post == paginator.posts.last %}
+    	&lt;span class=&quot;nt&quot;&gt;&amp;lt;hr&amp;gt;&lt;/span&gt; 
+    {% endunless %}
+    {% endfor %}
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;pagination&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+      {% if paginator.next_page %}
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;pagination-item older&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;{{paginator.next_page_path}}&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Older&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
+      {% else %}
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;span&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;pagination-item older&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Older&lt;span class=&quot;nt&quot;&gt;&amp;lt;/span&amp;gt;&lt;/span&gt;
+      {% endif %}
+      {% if paginator.previous_page %}
+      {% if paginator.page == 2 %}
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;pagination-item newer&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/{{page.paginate.category}}&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Newer&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
+      {% else %}
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;pagination-item newer&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;{{paginator.previous_page_path}}&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Newer&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
+      {% endif %}
+      {% else %}
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;span&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;pagination-item newer&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Newer&lt;span class=&quot;nt&quot;&gt;&amp;lt;/span&amp;gt;&lt;/span&gt;
+      {% endif %}
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Setting up a paginated category page is simply a matter of using &lt;code class=&quot;highlighter-rouge&quot;&gt;layout: category-page&lt;/code&gt;. For example, this is my &lt;code class=&quot;highlighter-rouge&quot;&gt;_pages/tech/index.html&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nn&quot;&gt;---&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;layout&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;category-page&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Tech&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;permalink&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;/tech/&quot;&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;paginate&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;category&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;tech&quot;&lt;/span&gt;
+&lt;span class=&quot;nn&quot;&gt;---&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;sass&quot;&gt;SASS&lt;/h3&gt;
+
+&lt;p&gt;I’m a big fan of SASS, and I was happy to discover that Jekyll has &lt;a href=&quot;https://jekyllrb.com/docs/assets/#sassscss&quot;&gt;built-in support for SASS&lt;/a&gt;. I’ve also taken to inlining critical CSS (&lt;a href=&quot;https://www.youtube.com/watch?v=FEs2jgZBaQA&quot;&gt;this long and insightful talk&lt;/a&gt; by Addy Osmani helped me see the light) and I wanted to set it up for my site. A little bit of Google-fu led me to this &lt;a href=&quot;https://gist.github.com/benedfit/46da533805566141c42f&quot;&gt;gist&lt;/a&gt; and this &lt;a href=&quot;http://www.kevinsweet.com/inline-scss-jekyll-github-pages&quot;&gt;post&lt;/a&gt; that solved my problem without having to use Grunt or Gulp.&lt;/p&gt;
+
+&lt;h3 id=&quot;deploying-to-github-pages&quot;&gt;Deploying to Github Pages&lt;/h3&gt;
+&lt;p&gt;Lastly, since this site is hosted on Github Pages and Github approves a limited set of plugins (Octopress not being one of them), I had to resort to manually building and deploying my site. This can be done by setting up a &lt;code class=&quot;highlighter-rouge&quot;&gt;_deploy.yml&lt;/code&gt; according to the specification &lt;a href=&quot;https://github.com/octopress/octopress#git-deployment-configuration&quot;&gt;here&lt;/a&gt; and running&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;   octopress deploy
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Warning: Be sure to have a clean working environment by stashing/committing your files before running this command. I accidentally published a bunch of temp posts I’d created to test pagination because they were present (untracked , not stashed or committed) in the &lt;code class=&quot;highlighter-rouge&quot;&gt;_posts&lt;/code&gt; folder and they ended up in the resulting Jekyll build. That’s what you get for not reading the &lt;a href=&quot;https://github.com/octopress/octopress#isolate&quot;&gt;manual&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://developers.google.com/speed/pagespeed/insights/?url=vinaygopinath.me&quot;&gt;Pagespeed insights score&lt;/a&gt; for the site:
+&lt;img src=&quot;http://i.imgur.com/iJhrRzN.png&quot; alt=&quot;99/100 on both mobile and desktop&quot; /&gt;&lt;/p&gt;
+
 </content>
  </entry>
  
@@ -42,6 +163,15 @@
     &lt;p&gt;Jekyll does not seem to have support for paginated categories. I intend to split this blog into categories like travel, tech and other. While it is possible to list out posts in a category, &lt;a href=&quot;http://jekyllrb.com/docs/pagination/&quot;&gt;pagination does not support categories&lt;/a&gt; just yet. I hope a future release adds this feature. I’m not sure about the Jekyll community ecosystem - perhaps there’s a plugin that already does this.&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Previous blog</title>
+   <link href="/tech/2016/02/17/previous-blog/"/>
+   <updated>2016-02-17T10:40:00+01:00</updated>
+   <id>/tech/2016/02/17/previous-blog</id>
+   <content type="html">&lt;p&gt;The previous incarnation of this blog lives in WordPress land and has my posts about AngularJS, Android, Ubuntu and other tools and frameworks I’ve worked with. You can check it out &lt;a href=&quot;https://vinaygopinath.wordpress.com/category/tech/&quot;&gt;here&lt;/a&gt;&lt;/p&gt;
 </content>
  </entry>
  
