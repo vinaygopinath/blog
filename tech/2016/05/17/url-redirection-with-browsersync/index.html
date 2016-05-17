@@ -15,12 +15,12 @@
   
   <title>
     
-    Hello &middot; Vinay Gopinath
+    URL redirection with Browsersync &middot; Vinay Gopinath
     
   </title>
-  <meta name="description" content="Setting up a new GitHub Pages-powered Jekyll site">
-  <meta name="og:description" content="Setting up a new GitHub Pages-powered Jekyll site">
-  <link rel="canonical" href="https://vinaygopinath.me/tech/2016/02/17/hello/">
+  <meta name="description" content="Redirect URLs to an alternate path on your localhost site with Browsersync">
+  <meta name="og:description" content="Redirect URLs to an alternate path on your localhost site with Browsersync">
+  <link rel="canonical" href="https://vinaygopinath.me/tech/2016/05/17/url-redirection-with-browsersync/">
   
   <style type="text/css">
   
@@ -86,22 +86,65 @@ styles, `#sidebar-checkbox` for behavior. -->
 
     <div class="container content">
         <div class="post">
-  <h2 class="post-title">Hello</h2>
-  <span class="post-date">17 Feb 2016</span>
-  <p>Hello,</p>
+  <h2 class="post-title">URL redirection with Browsersync</h2>
+  <span class="post-date">17 May 2016</span>
+  <p>I started working on <a href="https://www.gapsquad.com">GapSquad’s website</a> recently, and I had to redirect some URL requests in the Gulp+Browsersync dev environment to alternate paths in the project directory (to recreate the behaviour of the nginx production server). This can be done using <a href="https://www.browsersync.io/docs/options/">Browsersync options</a>.</p>
 
-<p>Ghost is just not enough! I’d heard good things about Jekyll for sometime now, so I decided to check things out and host my blog on Github Pages.</p>
+<p>The project structure is organized like this</p>
 
-<p>I ran into a few issues</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>app
+- - - pages
+- - - - - - jobs.html
+- - - - - - pricing.html
+- - - - - - how-it-works.html
+- - - index.html
+</code></pre>
+</div>
 
-<ul>
-  <li>
-    <p>Github Pages <a href="https://github.com/isaacs/github/issues/547">does not support</a> setting a custom domain for a user site (<code class="highlighter-rouge">master</code> branch) without affecting all project sites (<code class="highlighter-rouge">gh-pages</code> branch) of that account. I wanted to added the custom domain <a href="http://blog.vinaygopinath.me">blog.vinaygopinath.me</a> to the blog repository while keeping the <code class="highlighter-rouge">username.github.io/project</code> demo site for <a href="https://github.com/vinaygopinath/ngMeta">ngMeta</a>, but apparently that is not possible with GitHub. A support member suggested that I set up my blog as a project repo, as a workaround for the all-or-nothing redirection.</p>
-  </li>
-  <li>
-    <p>Jekyll does not seem to have support for paginated categories. I intend to split this blog into categories like travel, tech and other. While it is possible to list out posts in a category, <a href="http://jekyllrb.com/docs/pagination/">pagination does not support categories</a> just yet. I hope a future release adds this feature. I’m not sure about the Jekyll community ecosystem - perhaps there’s a plugin that already does this.</p>
-  </li>
-</ul>
+<p>index.html has references to <code class="highlighter-rouge">/pricing</code>, <code class="highlighter-rouge">/jobs</code> and <code class="highlighter-rouge">/how-it-works</code>, all of which are redirected to the corresponding HTML files in the <code class="highlighter-rouge">pages</code> directory on the production server using nginx configuration.</p>
+
+<p>I wanted to use Browsersync locally and recreate the behaviour of the server, without rewriting links specifically for the dev environment.</p>
+
+<h3 id="option-1---use-a-middleware">Option 1 - Use a middleware</h3>
+<p>Browsersync lets you define middleware to manipulate request and response data. I used it to rewrite <code class="highlighter-rouge">/pricing</code> to <code class="highlighter-rouge">/pages/pricing.html</code> in my Browsersync Gulp task.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="nx">browserSync</span><span class="p">.</span><span class="nx">init</span><span class="p">({</span>
+    <span class="na">server</span><span class="p">:</span> <span class="p">{</span>
+      <span class="c1">//Middleware paths are relative to the base directory</span>
+      <span class="na">baseDir</span><span class="p">:</span> <span class="s1">'app'</span>
+    <span class="p">},</span>
+    <span class="na">middleware</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span><span class="nx">res</span><span class="p">,</span><span class="nx">next</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">url</span> <span class="o">===</span> <span class="s1">'/pricing'</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">req</span><span class="p">.</span><span class="nx">url</span> <span class="o">=</span> <span class="s1">'/pages/pricing.html'</span><span class="p">;</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">url</span> <span class="o">===</span> <span class="s1">'/how-it-works'</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">req</span><span class="p">.</span><span class="nx">url</span> <span class="o">=</span> <span class="s1">'/pages/how-it-works.html'</span><span class="p">;</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">url</span> <span class="o">===</span> <span class="s1">'/jobs'</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">req</span><span class="p">.</span><span class="nx">url</span> <span class="o">=</span> <span class="s1">'/pages/jobs.html'</span><span class="p">;</span>
+      <span class="p">}</span>
+      <span class="k">return</span> <span class="nx">next</span><span class="p">();</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+</code></pre>
+</div>
+<p>When the request URL matches the ones that need to be redirected, I’ve simply replaced the request URL with the file path. You can also use JS regular expressions to match and redirect URLs.</p>
+
+<h3 id="option-2---define-server-routes">Option 2 - Define server routes</h3>
+<p>The more straightforward option is to define routes in the server config.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="nx">browserSync</span><span class="p">.</span><span class="nx">init</span><span class="p">({</span>
+    <span class="na">server</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">baseDir</span><span class="p">:</span> <span class="s1">'app'</span><span class="p">,</span>
+      <span class="c1">//Route paths are not relative to the base directory</span>
+      <span class="na">routes</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">'/pricing'</span><span class="p">:</span> <span class="s1">'app/pages/pricing.html'</span><span class="p">,</span>
+        <span class="s1">'/how-it-works'</span><span class="p">:</span> <span class="s1">'app/pages/how-it-works.html'</span><span class="p">,</span>
+        <span class="s1">'/jobs'</span><span class="p">:</span> <span class="s1">'app/pages/jobs.html'</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+</code></pre>
+</div>
+
 
 </div>
 
@@ -127,8 +170,8 @@ styles, `#sidebar-checkbox` for behavior. -->
       "@type": "ListItem",
       "position": 3,
       "item": {
-        "@id": "https://vinaygopinath.me/tech/2016/02/17/hello/",
-        "name": "Hello"
+        "@id": "https://vinaygopinath.me/tech/2016/05/17/url-redirection-with-browsersync/",
+        "name": "URL redirection with Browsersync"
       }
     }]
   }
@@ -137,8 +180,8 @@ styles, `#sidebar-checkbox` for behavior. -->
 <div id="disqus_thread"></div>
 <script>
   var disqus_config = function () {
-    this.page.url = 'https://vinaygopinath.me/tech/2016/02/17/hello/';
-    this.page.identifier = '/tech/2016/02/17/hello/';
+    this.page.url = 'https://vinaygopinath.me/tech/2016/05/17/url-redirection-with-browsersync/';
+    this.page.identifier = '/tech/2016/05/17/url-redirection-with-browsersync/';
   };
   (function() {
     var d = document, s = d.createElement('script');
@@ -155,18 +198,18 @@ styles, `#sidebar-checkbox` for behavior. -->
 
 <li>
 <h3>
-<a href="/tech/2016/05/17/url-redirection-with-browsersync/">
-URL redirection with Browsersync
-<small>17 May 2016</small>
+<a href="/tech/2016/04/14/jekyll-updates/">
+Jekyll updates
+<small>14 Apr 2016</small>
 </a>
 </h3>
 </li>
 
 <li>
 <h3>
-<a href="/tech/2016/04/14/jekyll-updates/">
-Jekyll updates
-<small>14 Apr 2016</small>
+<a href="/tech/2016/02/17/hello/">
+Hello
+<small>17 Feb 2016</small>
 </a>
 </h3>
 </li>

@@ -4,13 +4,77 @@
  <title>Vinay Gopinath</title>
  <link href="/atom.xml" rel="self"/>
  <link href="/"/>
- <updated>2016-04-14T13:14:44+02:00</updated>
+ <updated>2016-05-17T18:45:53+02:00</updated>
  <id></id>
  <author>
    <name></name>
    <email></email>
  </author>
 
+ 
+ <entry>
+   <title>URL redirection with Browsersync middleware</title>
+   <link href="/tech/2016/05/17/url-redirection-with-browsersync-middleware/"/>
+   <updated>2016-05-17T16:57:05+02:00</updated>
+   <id>/tech/2016/05/17/url-redirection-with-browsersync-middleware</id>
+   <content type="html">&lt;p&gt;I started working on &lt;a href=&quot;https://www.gapsquad.com&quot;&gt;GapSquad’s website&lt;/a&gt; recently, and I had to redirect some URL requests in the Gulp+Browsersync dev environment to alternate paths in the project directory (to recreate the behaviour of the nginx production server). This can be done using &lt;a href=&quot;https://www.browsersync.io/docs/options/&quot;&gt;Browsersync options&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;The project structure is organized like this&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;app
+- - - pages
+- - - - - - jobs.html
+- - - - - - pricing.html
+- - - - - - how-it-works.html
+- - - index.html
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;index.html has references to &lt;code class=&quot;highlighter-rouge&quot;&gt;/pricing&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;/jobs&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;/how-it-works&lt;/code&gt;, all of which are redirected to the corresponding HTML files in the &lt;code class=&quot;highlighter-rouge&quot;&gt;pages&lt;/code&gt; directory on the production server using nginx configuration.&lt;/p&gt;
+
+&lt;p&gt;The trouble was in using Browsersync locally to recreate the same behaviour as the server, without rewriting the links specifically for the dev environment.&lt;/p&gt;
+
+&lt;h4 id=&quot;option-1---use-a-middleware&quot;&gt;Option 1 - Use a middleware&lt;/h4&gt;
+&lt;p&gt;Browsersync lets you define middleware manipulate request and response data. I used it to rewrite &lt;code class=&quot;highlighter-rouge&quot;&gt;/pricing&lt;/code&gt; to &lt;code class=&quot;highlighter-rouge&quot;&gt;/pages/pricing.html&lt;/code&gt; in my Browsersync Gulp task.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;browserSync&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;init&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;server&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;c1&quot;&gt;//Middleware paths are relative to the base directory&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;baseDir&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;app&#39;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;middleware&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;req&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;res&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;req&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;url&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;/pricing&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;req&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;url&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;/pages/pricing.html&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;req&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;url&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;/how-it-works&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;req&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;url&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;/pages/how-it-works.html&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;req&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;url&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;/jobs&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;req&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;url&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;/pages/jobs.html&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;When the request URL matches the ones that need to be redirected, I’ve simply replaced the request URL with the file path. You can also use JS regular expressions to match and redirect URLs.&lt;/p&gt;
+
+&lt;h4 id=&quot;option-2---define-server-routes&quot;&gt;Option 2 - Define server routes&lt;/h4&gt;
+&lt;p&gt;The more straightforward option is to define routes in the server config.
+&lt;code class=&quot;highlighter-rouge&quot;&gt;javascript
+browserSync.init({
+    server: {
+      baseDir: &#39;app&#39;,
+      //Route paths are not relative to the base directory
+      routes: {
+        &#39;/pricing&#39;: &#39;app/pages/pricing.html&#39;,
+        &#39;/how-it-works&#39;: &#39;app/pages/how-it-works.html&#39;,
+        &#39;/jobs&#39;: &#39;app/pages/jobs.html&#39;
+      }
+    }
+  });
+&lt;/code&gt;&lt;/p&gt;
+
+</content>
+ </entry>
  
  <entry>
    <title>Jekyll updates</title>
