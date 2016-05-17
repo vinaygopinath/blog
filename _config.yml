@@ -32,3 +32,11 @@ pagination:
 sass:
   sass_dir: public/styles
   style: compressed
+
+defaults:
+  -
+    scope:
+      path: ""
+    values:
+      description: "Vinay Gopinath's occasionally updated corner of the Internet"
+

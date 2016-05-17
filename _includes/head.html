@@ -1,44 +1,47 @@
 <head>
-    <link href="http://gmpg.org/xfn/11" rel="profile">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta http-equiv="content-type" content="text/html; charset=utf-8">
-
-    <!-- Enable responsiveness on mobile devices-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-    <meta name="theme-color" content="#202020">
-    
-    <!-- Google search console verification -->
-    <meta name="google-site-verification" content="MWI4oyhfBl0XmM9yIcmO1Z7pk-vRmALsNYJ1FwKX3iQ" />
-
-    <title>
-        {% if page.title == "Home" %} 
-        {{ site.title }} &middot; {{ site.tagline }} 
-        {% else %} 
-        {{ page.title }} &middot; {{ site.title }}
-        {% endif %}
-    </title>
-    
-    <style type="text/css">
-    {% capture include_to_scssify %}
-      {% include critical.scss %}
-    {% endcapture %}
-    {{ include_to_scssify | scssify }}
-    </style>
-
-    <!-- Icons -->
-    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/public/icons/apple-touch-icon-57x57.png" />
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/public/icons/apple-touch-icon-114x114.png" />
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/public/icons/apple-touch-icon-72x72.png" />
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/icons/apple-touch-icon-144x144.png" />
-    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/public/icons/apple-touch-icon-120x120.png" />
-    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/public/icons/apple-touch-icon-152x152.png" />
-    <link rel="icon" type="image/png" href="/public/icons/favicon-32x32.png" sizes="32x32" />
-    <link rel="icon" type="image/png" href="/public/icons/favicon-16x16.png" sizes="16x16" />
-    <link rel="shortcut icon" href="/public/icons/favicon.ico">
-    <meta name="application-name" content="Vinay Gopinath &middot; Adventures with technology and travel" />
-    <meta name="msapplication-TileColor" content="#202020" />
-    <meta name="msapplication-TileImage" content="/public/icons/mstile-144x144.png" />
-
-    <!-- RSS -->
-    <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+  <meta name="theme-color" content="#202020">
+  
+  <!-- Google search console verification -->
+  <meta name="google-site-verification" content="MWI4oyhfBl0XmM9yIcmO1Z7pk-vRmALsNYJ1FwKX3iQ" />
+  
+  <title>
+    {% if page.title == "Home" %}
+    {{ site.title }} &middot; {{ site.tagline }}
+    {% else %}
+    {{ page.title }} &middot; {{ site.title }}
+    {% endif %}
+  </title>
+  <meta name="description" content="{{page.description || site.description}}">
+  <meta name="og:description" content="{{page.description || site.description}}">
+  <link rel="canonical" href="{{ site.live_url }}{{ page.url | replace:'index.html',''}}">
+  
+  <style type="text/css">
+  {% capture include_to_scssify %}
+  {% include critical.scss %}
+  {% endcapture %}
+  {{ include_to_scssify | scssify }}
+  </style>
+  
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/public/icons/apple-touch-icon-57x57.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/public/icons/apple-touch-icon-114x114.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/public/icons/apple-touch-icon-72x72.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/icons/apple-touch-icon-144x144.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/public/icons/apple-touch-icon-120x120.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/public/icons/apple-touch-icon-152x152.png" />
+  <link rel="icon" type="image/png" href="/public/icons/favicon-32x32.png" sizes="32x32" />
+  <link rel="icon" type="image/png" href="/public/icons/favicon-16x16.png" sizes="16x16" />
+  <link rel="shortcut icon" href="/public/icons/favicon.ico">
+  <meta name="application-name" content="Vinay Gopinath &middot; Adventures with technology and travel" />
+  <meta name="msapplication-TileColor" content="#202020" />
+  <meta name="msapplication-TileImage" content="/public/icons/mstile-144x144.png" />
+  
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
 </head>

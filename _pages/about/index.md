@@ -1,6 +1,7 @@
 ---
 layout: page
 title: About
+description: Vinay Gopinath is a full-stack developer with a front-end focus.
 permalink: "/about/"
 ---
 
