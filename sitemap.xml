@@ -1,0 +1,15 @@
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://vinaygopinath.me</loc>
+    <priority>1.0</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://vinaygopinath.me/tech/</loc>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://vinaygopinath.me/travel/</loc>
+    <changefreq>daily</changefreq>
+  </url>
+</urlset>
