@@ -4,10 +4,17 @@
 {% include head.html %}
 
 <body>
-    {{content}}
-    
-    <link rel="stylesheet" href="/public/styles/site.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans:400%7CLato:400">
+  {{content}}
+  
+  <link rel="stylesheet" href="/public/styles/site.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans:400%7CLato:400">
+  
+  <script>
+  window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+  ga('create', 'UA-78016218-1', 'auto');
+  ga('send', 'pageview');
+  </script>
+  <script async src='https://www.google-analytics.com/analytics.js'></script>
 </body>
 
 </html>
