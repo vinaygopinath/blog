@@ -30,6 +30,7 @@ if (app.get('env') === 'development') {
 //Set up express routes here
 ```
 This enables CORS for all Express routes and responds to pre-flight OPTIONS requests with HTTP status OK (200) only during development. If you haven't already set your `NODE_ENV` to `development`, you can do so and start your server like so
+
 ```bash
 NODE_ENV=development node index.js
 ```
