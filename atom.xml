@@ -4,13 +4,52 @@
  <title>Vinay Gopinath</title>
  <link href="/atom.xml" rel="self"/>
  <link href="/"/>
- <updated>2016-05-23T23:45:16+02:00</updated>
+ <updated>2016-06-14T02:04:43+02:00</updated>
  <id></id>
  <author>
    <name></name>
    <email></email>
  </author>
 
+ 
+ <entry>
+   <title>Sending emails from Ghost with Nodemailer and SparkPost</title>
+   <link href="/tech/2016/06/14/sending-emails-from-ghost-with-nodemailer-and-sparkpost/"/>
+   <updated>2016-06-14T01:08:22+02:00</updated>
+   <id>/tech/2016/06/14/sending-emails-from-ghost-with-nodemailer-and-sparkpost</id>
+   <content type="html">&lt;p&gt;While I personally prefer Jekyll to Ghost in the battle of minimalistic CMS platforms, I recently set up a &lt;a href=&quot;https://ghost.org/&quot;&gt;Ghost&lt;/a&gt; blog for work and connected the built-in &lt;a href=&quot;https://github.com/nodemailer/nodemailer&quot;&gt;Nodemailer&lt;/a&gt; email module with &lt;a href=&quot;https://www.sparkpost.com&quot;&gt;SparkPost&lt;/a&gt;, an email service. Here’s how:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Set up a SparkPost account and verify your sending domain.&lt;/li&gt;
+  &lt;li&gt;Go to SparkPost &lt;strong&gt;Accounts&lt;/strong&gt; –&amp;gt; &lt;strong&gt;SMTP Relay&lt;/strong&gt; and copy the host, port and username.&lt;/li&gt;
+  &lt;li&gt;Under &lt;strong&gt;Accounts&lt;/strong&gt; –&amp;gt; &lt;strong&gt;API Keys&lt;/strong&gt;, select the &lt;strong&gt;Send via SMTP&lt;/strong&gt; permission and generate a new API key. The generated API key will be your SMTP password.&lt;/li&gt;
+  &lt;li&gt;Open up your Ghost blog’s config.js, and modify the production section.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;nx&quot;&gt;production&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;https://example.com/blog&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;mail&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;nl&quot;&gt;from&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;&quot;Example.com Blog&quot; &amp;lt;no-reply@example.com&amp;gt;&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;transport&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;SMTP&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;options&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nl&quot;&gt;host&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;smtp.sparkpostmail.com&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;port&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;587&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;auth&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+          &lt;span class=&quot;nl&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;SPARKPOST_SMTP_USERNAME&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+          &lt;span class=&quot;nx&quot;&gt;pass&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;SPARKPOST_SMTP_API_KEY&#39;&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;database&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;....&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;You can test your configuration by inviting someone to your Ghost installation. The invitee should receive an email from &lt;em&gt;Example.com blog&lt;/em&gt;.&lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>Setting up CORS with pre-flight request handling for development use in Node + Express</title>

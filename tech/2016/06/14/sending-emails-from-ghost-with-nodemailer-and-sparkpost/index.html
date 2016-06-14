@@ -15,12 +15,12 @@
   
   <title>
     
-    Previous blog &middot; Vinay Gopinath
+    Sending emails from Ghost with Nodemailer and SparkPost &middot; Vinay Gopinath
     
   </title>
-  <meta name="description" content="Previous blog">
-  <meta name="og:description" content="Previous blog">
-  <link rel="canonical" href="https://vinaygopinath.me/tech/2016/02/17/previous-blog/">
+  <meta name="description" content="How to use Nodemailer and SparkPost to send transactional emails from the Ghost blogging platform">
+  <meta name="og:description" content="How to use Nodemailer and SparkPost to send transactional emails from the Ghost blogging platform">
+  <link rel="canonical" href="https://vinaygopinath.me/tech/2016/06/14/sending-emails-from-ghost-with-nodemailer-and-sparkpost/">
   
   <style type="text/css">
   
@@ -86,9 +86,39 @@ styles, `#sidebar-checkbox` for behavior. -->
 
     <div class="container content">
         <div class="post">
-  <h2 class="post-title">Previous blog</h2>
-  <span class="post-date">17 Feb 2016</span>
-  <p>The previous incarnation of this blog lives in WordPress land and has my posts about AngularJS, Android, Ubuntu and other tools and frameworks I’ve worked with. You can check it out <a href="https://vinaygopinath.wordpress.com/category/tech/">here</a></p>
+  <h2 class="post-title">Sending emails from Ghost with Nodemailer and SparkPost</h2>
+  <span class="post-date">14 Jun 2016</span>
+  <p>While I personally prefer Jekyll to Ghost in the battle of minimalistic CMS platforms, I recently set up a <a href="https://ghost.org/">Ghost</a> blog for work and connected the built-in <a href="https://github.com/nodemailer/nodemailer">Nodemailer</a> email module with <a href="https://www.sparkpost.com">SparkPost</a>, an email service. Here’s how:</p>
+
+<ol>
+  <li>Set up a SparkPost account and verify your sending domain.</li>
+  <li>Go to SparkPost <strong>Accounts</strong> –&gt; <strong>SMTP Relay</strong> and copy the host, port and username.</li>
+  <li>Under <strong>Accounts</strong> –&gt; <strong>API Keys</strong>, select the <strong>Send via SMTP</strong> permission and generate a new API key. The generated API key will be your SMTP password.</li>
+  <li>Open up your Ghost blog’s config.js, and modify the production section.</li>
+</ol>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>  <span class="nx">production</span><span class="err">:</span> <span class="p">{</span>
+    <span class="nl">url</span><span class="p">:</span> <span class="s1">'https://example.com/blog'</span><span class="p">,</span>
+    <span class="nx">mail</span><span class="err">:</span> <span class="p">{</span>
+      <span class="nl">from</span><span class="p">:</span> <span class="s1">'"Example.com Blog" &lt;no-reply@example.com&gt;'</span><span class="p">,</span>
+      <span class="nx">transport</span><span class="err">:</span> <span class="s1">'SMTP'</span><span class="p">,</span>
+      <span class="nx">options</span><span class="err">:</span> <span class="p">{</span>
+        <span class="nl">host</span><span class="p">:</span> <span class="s1">'smtp.sparkpostmail.com'</span><span class="p">,</span>
+        <span class="nx">port</span><span class="err">:</span> <span class="mi">587</span><span class="p">,</span>
+        <span class="nx">auth</span><span class="err">:</span> <span class="p">{</span>
+          <span class="nl">user</span><span class="p">:</span> <span class="s1">'SPARKPOST_SMTP_USERNAME'</span><span class="p">,</span>
+          <span class="nx">pass</span><span class="err">:</span> <span class="s1">'SPARKPOST_SMTP_API_KEY'</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="nx">database</span><span class="err">:</span> <span class="p">{</span>
+    <span class="p">....</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+</code></pre>
+</div>
+
+<p>You can test your configuration by inviting someone to your Ghost installation. The invitee should receive an email from <em>Example.com blog</em>.</p>
 
 </div>
 
@@ -114,8 +144,8 @@ styles, `#sidebar-checkbox` for behavior. -->
       "@type": "ListItem",
       "position": 3,
       "item": {
-        "@id": "https://vinaygopinath.me/tech/2016/02/17/previous-blog/",
-        "name": "Previous blog"
+        "@id": "https://vinaygopinath.me/tech/2016/06/14/sending-emails-from-ghost-with-nodemailer-and-sparkpost/",
+        "name": "Sending emails from Ghost with Nodemailer and SparkPost"
       }
     }]
   }
@@ -124,8 +154,8 @@ styles, `#sidebar-checkbox` for behavior. -->
 <div id="disqus_thread"></div>
 <script>
   var disqus_config = function () {
-    this.page.url = 'https://vinaygopinath.me/tech/2016/02/17/previous-blog/';
-    this.page.identifier = '/tech/2016/02/17/previous-blog/';
+    this.page.url = 'https://vinaygopinath.me/tech/2016/06/14/sending-emails-from-ghost-with-nodemailer-and-sparkpost/';
+    this.page.identifier = '/tech/2016/06/14/sending-emails-from-ghost-with-nodemailer-and-sparkpost/';
   };
   (function() {
     var d = document, s = d.createElement('script');
@@ -142,15 +172,6 @@ styles, `#sidebar-checkbox` for behavior. -->
 
 <li>
 <h3>
-<a href="/tech/2016/06/14/sending-emails-from-ghost-with-nodemailer-and-sparkpost/">
-Sending emails from Ghost with Nodemailer and SparkPost
-<small>14 Jun 2016</small>
-</a>
-</h3>
-</li>
-
-<li>
-<h3>
 <a href="/tech/2016/05/23/enable-cors-with-pre-flight/">
 Setting up CORS with pre-flight request handling for development use in Node + Express
 <small>23 May 2016</small>
@@ -163,6 +184,15 @@ Setting up CORS with pre-flight request handling for development use in Node + E
 <a href="/tech/2016/05/17/url-redirection-with-browsersync/">
 URL redirection with Browsersync
 <small>17 May 2016</small>
+</a>
+</h3>
+</li>
+
+<li>
+<h3>
+<a href="/tech/2016/04/14/jekyll-updates/">
+Jekyll updates
+<small>14 Apr 2016</small>
 </a>
 </h3>
 </li>
