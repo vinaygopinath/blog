@@ -88,7 +88,103 @@ styles, `#sidebar-checkbox` for behavior. -->
         <div class="post">
   <h2 class="post-title">SEO in Angular2 with ng2-meta</h2>
   <span class="post-date">25 Jul 2016</span>
-  
+  <p>Updating meta tags such as title and description as the route changes is essential for SEO in any single page application. While building <a href="http://vinaygopinath.me/tech/2016/07/25/nomad-couple/">Nomad Couple</a>, an Angular2 site, I realized that there weren’t any Angular2 meta-tags libraries, so I decided to build one. I’ve released it as <a href="https://github.com/vinaygopinath/ng2-meta">ng2-meta</a> on npm.</p>
+
+<p>ng2-meta listens to router changes and updates <code class="highlighter-rouge">&lt;meta&gt;</code> tags with the values provided in the route’s configuration.</p>
+
+<p>To get started, install ng2-meta</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>npm install --save ng2-meta
+</code></pre>
+</div>
+
+<p>Add a <code class="highlighter-rouge">data</code> object to each of your routes and define meta tags (title, description, url etc) relevant to the route.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kr">const</span> <span class="nx">routes</span><span class="err">:</span> <span class="nx">RouterConfig</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="p">{</span>
+    <span class="na">path</span><span class="p">:</span> <span class="s1">'home'</span><span class="p">,</span>
+    <span class="na">component</span><span class="p">:</span> <span class="nx">HomeComponent</span><span class="p">,</span>
+    <span class="na">data</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">meta</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">title</span><span class="p">:</span> <span class="s1">'Home page'</span><span class="p">,</span>
+        <span class="na">description</span><span class="p">:</span> <span class="s1">'Description of the home page'</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+  <span class="p">{</span>
+    <span class="na">path</span><span class="p">:</span> <span class="s1">'dashboard'</span><span class="p">,</span>
+    <span class="na">component</span><span class="p">:</span> <span class="nx">DashboardComponent</span><span class="p">,</span>
+    <span class="na">data</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">meta</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">title</span><span class="p">:</span> <span class="s1">'Dashboard'</span><span class="p">,</span>
+        <span class="na">description</span><span class="p">:</span> <span class="s1">'Description of the dashboard page'</span><span class="p">,</span>
+        <span class="s1">'og:image'</span><span class="p">:</span> <span class="s1">'http://example.com/dashboard-image.png'</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">];</span>
+</code></pre>
+</div>
+
+<p>Inject Angular2’s <code class="highlighter-rouge">Title</code> service as well as ng2-meta’s <code class="highlighter-rouge">MetaService</code> into your app. ng2-meta uses the Title service internally to automatically change the page title when the <code class="highlighter-rouge">title</code> meta tag is updated.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">Title</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'@angular/platform-browser'</span><span class="p">;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">MetaService</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'ng2-meta'</span><span class="p">;</span>
+<span class="p">...</span>
+<span class="nx">bootstrap</span><span class="p">(</span><span class="nx">AppComponent</span><span class="p">,</span> <span class="p">[</span>
+  <span class="nx">HTTP_PROVIDERS</span><span class="p">,</span>
+  <span class="p">...</span>
+  <span class="nx">Title</span><span class="p">,</span>
+  <span class="nx">MetaService</span>
+<span class="p">]);</span>
+</code></pre>
+</div>
+
+<p>Add MetaService as a provider to your root component</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">MetaService</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'ng2-meta'</span><span class="p">;</span>
+
+<span class="err">@</span><span class="nx">Component</span><span class="p">({</span>
+  <span class="p">...</span>
+  <span class="na">providers</span><span class="p">:</span> <span class="p">[</span><span class="nx">MetaService</span><span class="p">]</span>
+<span class="p">})</span>
+</code></pre>
+</div>
+
+<p>If you’d like to update the page title and meta tags from a component or service, say, after receiving data from a HTTP call, you can use <code class="highlighter-rouge">MetaService</code>.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kr">class</span> <span class="nx">ProductComponent</span> <span class="p">{</span>
+  <span class="p">...</span>
+  <span class="nx">constructor</span><span class="p">(</span><span class="kr">private</span> <span class="nx">metaService</span><span class="err">:</span> <span class="nx">MetaService</span><span class="p">)</span> <span class="p">{}</span>
+
+  <span class="nx">ngOnInit</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">product</span> <span class="o">=</span> <span class="c1">//HTTP GET for product in catalogue</span>
+    <span class="nx">metaService</span><span class="p">.</span><span class="nx">setTitle</span><span class="p">(</span><span class="s1">'Product page for '</span><span class="o">+</span><span class="k">this</span><span class="p">.</span><span class="nx">product</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
+    <span class="nx">metaService</span><span class="p">.</span><span class="nx">setTag</span><span class="p">(</span><span class="s1">'og:image'</span><span class="p">,</span><span class="k">this</span><span class="p">.</span><span class="nx">product</span><span class="p">.</span><span class="nx">imageURL</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>It’s a good idea to add some fallback meta tags for use by crawlers that don’t execute Javascript, like Facebook and Twitter.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;html&gt;</span>
+ <span class="nt">&lt;head&gt;</span>
+  <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"title"</span> <span class="na">content=</span><span class="s">"Website Name"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"og:title"</span> <span class="na">content=</span><span class="s">"Website Name"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"description"</span> <span class="na">content=</span><span class="s">"General site description"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"og:description"</span> <span class="na">content=</span><span class="s">"General site description"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"og:image"</span> <span class="na">content=</span><span class="s">"http://abc.com/general-image.png"</span><span class="nt">&gt;</span>
+ <span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre>
+</div>
+<p>The fallback meta tags are used to generate the rich snippet shown when your website is shared on Facebook (Just make sure to add <a href="http://ogp.me/">Open graph</a> meta tags).
+<a href="/public/images/ng2-meta/facebook-share.png"><img src="/public/images/ng2-meta/facebook-share.png" alt="Nomad Couple - Facebook share rich snippet" /></a></p>
+
+<p>Check out <a href="vinaygopinath.github.io/NomadCouple/">Nomad Couple</a> as a demo of ng2-meta. Its source code is available <a href="https://github.com/vinaygopinath/NomadCouple">here</a>.</p>
+
+<p>I’m currently investigating server-side rendering using <a href="https://github.com/angular/universal">angular/universal</a> and plan to update ng2-meta to support it.</p>
 
 </div>
 
