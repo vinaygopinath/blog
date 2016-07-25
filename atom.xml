@@ -4,13 +4,33 @@
  <title>Vinay Gopinath</title>
  <link href="/atom.xml" rel="self"/>
  <link href="/"/>
- <updated>2016-07-19T14:37:13+02:00</updated>
+ <updated>2016-07-25T17:24:40+02:00</updated>
  <id></id>
  <author>
    <name></name>
    <email></email>
  </author>
 
+ 
+ <entry>
+   <title>Nomad Couple</title>
+   <link href="/tech/2016/07/25/nomad-couple/"/>
+   <updated>2016-07-25T16:31:07+02:00</updated>
+   <id>/tech/2016/07/25/nomad-couple</id>
+   <content type="html">&lt;p&gt;I’m Indian, and my girlfriend is Polish. We love travelling and we’d like to visit a lot of places, but there are &lt;a href=&quot;https://en.wikipedia.org/wiki/Visa_requirements_for_Indian_citizens#Visa_requirements_map&quot;&gt;surprisingly few countries&lt;/a&gt; that I can visit without a visa. Getting a visa can be tedious. (Quite often, I’ve had to  personally visit consulates and submit bank account statements, travel insurance and cover letters along with my visa application form). Finding countries that allow both of us to visit without a visa or obtain a visa on arrival is hard. That’s why it occurred to me to build &lt;a href=&quot;https://vinaygopinath.github.io/NomadCouple/&quot;&gt;Nomad Couple&lt;/a&gt;, a website that provides information on visa requirements for couples.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/public/images/nomad-couple/home.png&quot; alt=&quot;Nomad Couple homepage&quot; /&gt;&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>SEO in Angular2 with ng2-meta</title>
+   <link href="/tech/2016/07/25/seo-in-angular2-with-ng2-meta/"/>
+   <updated>2016-07-25T14:50:26+02:00</updated>
+   <id>/tech/2016/07/25/seo-in-angular2-with-ng2-meta</id>
+   <content type="html">
+</content>
+ </entry>
  
  <entry>
    <title>Sending emails from Ghost with Nodemailer and SparkPost</title>

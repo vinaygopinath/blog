@@ -15,12 +15,12 @@
   
   <title>
     
-    Tech - page 2 &middot; Vinay Gopinath
+    Nomad Couple &middot; Vinay Gopinath
     
   </title>
-  <meta name="description" content="Blog posts on front-end development, Node, automation tools and Android">
-  <meta name="og:description" content="Blog posts on front-end development, Node, automation tools and Android">
-  <link rel="canonical" href="https://vinaygopinath.me/tech/2/">
+  <meta name="description" content="Nomad Couple is an angular2 website with information on visa requirements for couples">
+  <meta name="og:description" content="Nomad Couple is an angular2 website with information on visa requirements for couples">
+  <link rel="canonical" href="https://vinaygopinath.me/tech/2016/07/25/nomad-couple/">
   
   <style type="text/css">
   
@@ -85,74 +85,101 @@ styles, `#sidebar-checkbox` for behavior. -->
     </div>
 
     <div class="container content">
-        <div class="page">
-  <h1 class="page-title">tech
-      
-        - Page 2
-      
-  </h1>
-  
-  <div class="posts">
-     
-     
-    
-    <div class="post">
-        <h2 class="post-title">
-      <a href="/tech/2016/04/14/jekyll-updates/">
-        Jekyll updates
-      </a>
-    </h2>
+        <div class="post">
+  <h2 class="post-title">Nomad Couple</h2>
+  <span class="post-date">25 Jul 2016</span>
+  <p>I’m Indian, and my girlfriend is Polish. We love travelling and we’d like to visit a lot of places, but there are <a href="https://en.wikipedia.org/wiki/Visa_requirements_for_Indian_citizens#Visa_requirements_map">surprisingly few countries</a> that I can visit without a visa. Getting a visa can be tedious. (Quite often, I’ve had to  personally visit consulates and submit bank account statements, travel insurance and cover letters along with my visa application form). Finding countries that allow both of us to visit without a visa or obtain a visa on arrival is hard. That’s why it occurred to me to build <a href="https://vinaygopinath.github.io/NomadCouple/">Nomad Couple</a>, a website that provides information on visa requirements for couples.</p>
 
-        <span class="post-date">14 Apr 2016</span> <p>I’ve been exploring the Jekyll ecosystem over the past couple of weeks, and consider me sold - I really like the simplicity of building a static site with pages, posts and collections. I know that neither Jekyll nor Ghost will dethrone WordPress as the layman’s choice of CMS, but given all of the work coming out of the node.js and Ruby camps, WordPress has got some stiff competition, and deservedly so.</p>
+<p><a href="/public/images/nomad-couple/home.png"><img src="/public/images/nomad-couple/home.png" alt="Nomad Couple home page" /></a></p>
 
+<p><a href="/public/images/nomad-couple/search.png"><img src="/public/images/nomad-couple/search.png" alt="Nomad Couple search results" /></a></p>
 
-    </div>
-    
-    <hr> 
-    
-     
-    
-    <div class="post">
-        <h2 class="post-title">
-      <a href="/tech/2016/02/17/hello/">
-        Hello
-      </a>
-    </h2>
+<p>The site was built as an experiment with Angular2. I set up the <a href="https://github.com/vinaygopinath/NomadCouple">repo</a> using <a href="https://github.com/angular/angular-cli">angular-cli</a>, a wonderful tool that makes it easy to build an Angular2 site and deploy it on GitHub Pages. Having spent some time in the “Javascript fatigue”-inducing React ecosystem, it’s refreshing to be able to set up a project and get going quickly with angular-cli. (Side note: It looks like Facebook is finally acknowledging how complex it is to get started with a React app by creating its <a href="https://facebook.github.io/react/blog/2016/07/22/create-apps-with-no-configuration.html">own CLI tool</a>).</p>
 
-        <span class="post-date">17 Feb 2016</span> <p>Hello,</p>
+<p>At the moment, the site groups countries based on visa requirements and links to WikiVoyage pages. I’d like to provide more information on each country through multiple data sources, the abilitiy to add links and pictures, and a Disqus comments section.</p>
 
+<p>The data for the site was scraped from Wikipedia’s “Visa requirements for X citizens” pages. The source code for the scraper is available <a href="https://github.com/vinaygopinath/visa-req-wiki-scraper">here</a>.</p>
 
-    </div>
-    
-    <hr> 
-    
-     
-    
-    <div class="post">
-        <h2 class="post-title">
-      <a href="/tech/2016/02/17/previous-blog/">
-        Previous blog
-      </a>
-    </h2>
-
-        <span class="post-date">17 Feb 2016</span> <p>The previous incarnation of this blog lives in WordPress land and has my posts about AngularJS, Android, Ubuntu and other tools and frameworks I’ve worked with. You can check it out <a href="https://vinaygopinath.wordpress.com/category/tech/">here</a></p>
-
-    </div>
-    
-    
 </div>
 
-<div class="pagination">
-  
-  <span class="pagination-item older">Older</span>
-  
-  
-  
-  <a class="pagination-item newer" href="/tech">Newer</a>
-  
-  
-</div>
-</div>
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [{
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "@id": "https://vinaygopinath.me",
+        "name": "Home"
+      }
+    },{
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "@id": "https://vinaygopinath.me/tech",
+        "name": "Tech"
+      }
+    },{
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "@id": "https://vinaygopinath.me/tech/2016/07/25/nomad-couple/",
+        "name": "Nomad Couple"
+      }
+    }]
+  }
+</script>
+
+<div id="disqus_thread"></div>
+<script>
+  var disqus_config = function () {
+    this.page.url = 'https://vinaygopinath.me/tech/2016/07/25/nomad-couple/';
+    this.page.identifier = '/tech/2016/07/25/nomad-couple/';
+  };
+  (function() {
+    var d = document, s = d.createElement('script');
+    s.src = '//vinaygopinath.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>You don't seem to have Javascript enabled - To participate in the discussion, consider allowing Javascript on this site</noscript>
+
+<!--<div class="related">
+<h2>Related Posts</h2>
+<ul class="related-posts">
+
+<li>
+<h3>
+<a href="/tech/2016/07/25/seo-in-angular2-with-ng2-meta/">
+SEO in Angular2 with ng2-meta
+<small>25 Jul 2016</small>
+</a>
+</h3>
+</li>
+
+<li>
+<h3>
+<a href="/tech/2016/06/14/sending-emails-from-ghost-with-nodemailer-and-sparkpost/">
+Sending emails from Ghost with Nodemailer and SparkPost
+<small>14 Jun 2016</small>
+</a>
+</h3>
+</li>
+
+<li>
+<h3>
+<a href="/tech/2016/05/23/enable-cors-with-pre-flight/">
+Setting up CORS with pre-flight request handling for development use in Node + Express
+<small>23 May 2016</small>
+</a>
+</h3>
+</li>
+
+</ul>
+</div>-->
+
     </div>
 </div>
 
