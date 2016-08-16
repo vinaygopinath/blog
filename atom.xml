@@ -4,7 +4,7 @@
  <title>Vinay Gopinath</title>
  <link href="/atom.xml" rel="self"/>
  <link href="/"/>
- <updated>2016-07-25T20:03:16+02:00</updated>
+ <updated>2016-08-17T00:06:39+02:00</updated>
  <id></id>
  <author>
    <name></name>
@@ -111,7 +111,7 @@
 &lt;p&gt;The fallback meta tags are used to generate the rich snippet shown when your website is shared on Facebook (Just make sure to add &lt;a href=&quot;http://ogp.me/&quot;&gt;Open graph&lt;/a&gt; meta tags).
 &lt;a href=&quot;/public/images/ng2-meta/facebook-share.png&quot;&gt;&lt;img src=&quot;/public/images/ng2-meta/facebook-share.png&quot; alt=&quot;Nomad Couple - Facebook share rich snippet&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;Check out &lt;a href=&quot;vinaygopinath.github.io/NomadCouple/&quot;&gt;Nomad Couple&lt;/a&gt; as a demo of ng2-meta. Its source code is available &lt;a href=&quot;https://github.com/vinaygopinath/NomadCouple&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Check out &lt;a href=&quot;https://vinaygopinath.github.io/NomadCouple/&quot;&gt;Nomad Couple&lt;/a&gt; as a demo of ng2-meta. Its source code is available &lt;a href=&quot;https://github.com/vinaygopinath/NomadCouple&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;I’m currently investigating server-side rendering using &lt;a href=&quot;https://github.com/angular/universal&quot;&gt;angular/universal&lt;/a&gt; and plan to update ng2-meta to support it.&lt;/p&gt;
 </content>
