@@ -7,13 +7,13 @@ styles, `#sidebar-checkbox` for behavior. -->
   <div class="sidebar-item">
     <p>{{ site.description }}</p>
   </div>
-  
+
   <nav class="sidebar-nav">
     <a class="sidebar-nav-item" href="/">Home</a>
-    <a class="sidebar-nav-item {%if page.url contains '/tech/' %} active{% endif %}" href="/tech/">Tech</a>
-    <a class="sidebar-nav-item {%if page.url contains '/travel/' %} active{% endif %}" href="/travel/">Travel</a>
+    <a class="sidebar-nav-item {%if page.url contains '/blog/tech/' %} active{% endif %}" href="/blog/tech/">Tech blog</a>
+    <a class="sidebar-nav-item {%if page.url contains '/blog/travel/' %} active{% endif %}" href="/blog/travel/">Travel blog</a>
   </nav>
-  
+
   <div class="sidebar-item">
     <p>
       &copy; {{ site.time | date: '%Y' }}. All rights reserved.
