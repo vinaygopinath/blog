@@ -15,12 +15,12 @@
   
   <title>
     
-    About &middot; Vinay Gopinath
+    Hello &middot; Vinay Gopinath
     
   </title>
-  <meta name="description" content="Vinay Gopinath is a full-stack developer with a front-end focus.">
-  <meta name="og:description" content="Vinay Gopinath is a full-stack developer with a front-end focus.">
-  <link rel="canonical" href="https://vinaygopinath.me/about/">
+  <meta name="description" content="Setting up a new GitHub Pages-powered Jekyll site">
+  <meta name="og:description" content="Setting up a new GitHub Pages-powered Jekyll site">
+  <link rel="canonical" href="https://vinaygopinath.me/blog/tech/hello/">
   
   <style type="text/css">
   
@@ -60,7 +60,7 @@ styles, `#sidebar-checkbox` for behavior. -->
 
   <nav class="sidebar-nav">
     <a class="sidebar-nav-item" href="/">Home</a>
-    <a class="sidebar-nav-item " href="/blog/tech/">Tech blog</a>
+    <a class="sidebar-nav-item  active" href="/blog/tech/">Tech blog</a>
     <a class="sidebar-nav-item " href="/blog/travel/">Travel blog</a>
   </nav>
 
@@ -85,17 +85,103 @@ styles, `#sidebar-checkbox` for behavior. -->
     </div>
 
     <div class="container content">
-        <div class="page">
-  <h1 class="page-title">About</h1>
-  <p>Hi, I’m Vinay Gopinath. You can find me on</p>
+        <div class="post">
+  <h2 class="post-title">Hello</h2>
+  <span class="post-date">17 Feb 2016</span>
+  <p>Hello,</p>
+
+<p>Ghost is just not enough! I’d heard good things about Jekyll for sometime now, so I decided to check things out and host my blog on Github Pages.</p>
+
+<p>I ran into a few issues</p>
 
 <ul>
-  <li><a href="https://google.com/+VinayGopinath">Google+</a></li>
-  <li><a href="https://github.com/vinaygopinath">GitHub</a></li>
-  <li><a href="http://stackoverflow.com/users/293847/weneigh">StackOverflow</a></li>
+  <li>
+    <p>Github Pages <a href="https://github.com/isaacs/github/issues/547">does not support</a> setting a custom domain for a user site (<code class="highlighter-rouge">master</code> branch) without affecting all project sites (<code class="highlighter-rouge">gh-pages</code> branch) of that account. I wanted to added the custom domain <a href="http://blog.vinaygopinath.me">blog.vinaygopinath.me</a> to the blog repository while keeping the <code class="highlighter-rouge">username.github.io/project</code> demo site for <a href="https://github.com/vinaygopinath/ngMeta">ngMeta</a>, but apparently that is not possible with GitHub. A support member suggested that I set up my blog as a project repo, as a workaround for the all-or-nothing redirection.</p>
+  </li>
+  <li>
+    <p>Jekyll does not seem to have support for paginated categories. I intend to split this blog into categories like travel, tech and other. While it is possible to list out posts in a category, <a href="http://jekyllrb.com/docs/pagination/">pagination does not support categories</a> just yet. I hope a future release adds this feature. I’m not sure about the Jekyll community ecosystem - perhaps there’s a plugin that already does this.</p>
+  </li>
 </ul>
 
 </div>
+
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [{
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "@id": "https://vinaygopinath.me",
+        "name": "Home"
+      }
+    },{
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "@id": "https://vinaygopinath.me/tech",
+        "name": "Tech"
+      }
+    },{
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "@id": "https://vinaygopinath.me/blog/tech/hello/",
+        "name": "Hello"
+      }
+    }]
+  }
+</script>
+
+<div id="disqus_thread"></div>
+<script>
+  var disqus_config = function () {
+    this.page.url = 'https://vinaygopinath.me/blog/tech/hello/';
+    this.page.identifier = '/blog/tech/hello/';
+  };
+  (function() {
+    var d = document, s = d.createElement('script');
+    s.src = '//vinaygopinath.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>You don't seem to have Javascript enabled - To participate in the discussion, consider allowing Javascript on this site</noscript>
+
+<!--<div class="related">
+<h2>Related Posts</h2>
+<ul class="related-posts">
+
+<li>
+<h3>
+<a href="/blog/travel/overheard-in-lodz/">
+Overheard in Łódź
+<small>25 Aug 2016</small>
+</a>
+</h3>
+</li>
+
+<li>
+<h3>
+<a href="/blog/tech/seo-in-angular2-with-ng2-meta/">
+SEO in Angular2 with ng2-meta
+<small>25 Jul 2016</small>
+</a>
+</h3>
+</li>
+
+<li>
+<h3>
+<a href="/blog/tech/nomad-couple/">
+Nomad Couple
+<small>25 Jul 2016</small>
+</a>
+</h3>
+</li>
+
+</ul>
+</div>-->
 
     </div>
 </div>

@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+  <meta name="theme-color" content="#202020">
+  
+  <!-- Google search console verification -->
+  <meta name="google-site-verification" content="MWI4oyhfBl0XmM9yIcmO1Z7pk-vRmALsNYJ1FwKX3iQ" />
+  
+  <title>
+    
+    SEO in Angular2 with ng2-meta &middot; Vinay Gopinath
+    
+  </title>
+  <meta name="description" content="How to use ng2-meta to update meta tags in your Angular2 site and improve your SEO">
+  <meta name="og:description" content="How to use ng2-meta to update meta tags in your Angular2 site and improve your SEO">
+  <link rel="canonical" href="https://vinaygopinath.me/blog/tech/seo-in-angular2-with-ng2-meta/">
+  
+  <style type="text/css">
+  
+  h1,h2,h3,h4,h5,h6{margin-bottom:.5rem;font-weight:bold;line-height:1.25;color:#313131;text-rendering:optimizeLegibility}*{box-sizing:border-box}html{margin:0;padding:0;font-family:Helvetica Neue,Helvetica,Arial,sans-serif;font-size:16px;line-height:1.5}body{margin:0;padding:0;color:#515151;background-color:#fff}@media (min-width: 38em){html{font-size:20px}}a{color:#268bd2;text-decoration:none}a strong{color:inherit}a:hover{text-decoration:underline}a:focus{text-decoration:underline}h1{font-size:2rem}h2{margin-top:1rem;font-size:1.5rem}h3{margin-top:1.5rem;font-size:1.25rem}h4{margin-top:1rem;font-size:1rem}h5{margin-top:1rem;font-size:1rem}h6{margin-top:1rem;font-size:1rem}p{margin-top:0;margin-bottom:1rem}strong{color:#313131}ul{margin-top:0;margin-bottom:1rem}ol{margin-top:0;margin-bottom:1rem}img{display:block;max-width:100%;margin:0 0 1rem;border-radius:5px}table{margin-bottom:1rem;width:100%;border:1px solid #e5e5e5;border-collapse:collapse}td{padding:.25rem .5rem;border:1px solid #e5e5e5}th{padding:.25rem .5rem;border:1px solid #e5e5e5}.lead{font-size:1.25rem;font-weight:300}.message{margin-bottom:1rem;padding:1rem;color:#717171;background-color:#f9f9f9}.container{max-width:38rem;padding-left:1rem;padding-right:1rem;margin-left:auto;margin-right:auto}tbody tr:nth-child(odd) td{background-color:#f9f9f9}tbody tr:nth-child(odd) th{background-color:#f9f9f9}h1,h2,h3,h4,h5,h6{font-family:Lato,Helvetica,Arial,sans-serif;font-weight:400;color:#313131;letter-spacing:-.025rem}.sidebar-nav-item.active,a.sidebar-nav-item:hover,a.sidebar-nav-item:focus{text-decoration:none;background-color:rgba(255,255,255,0.1);border-color:transparent}html{overflow-x:hidden;font-family:Noto Sans,Georgia,Times New Roman,serif}body{overflow-x:hidden}.wrap{position:relative;width:100%;backface-visibility:hidden;transition:transform .3s ease-in-out}.container{max-width:28rem}@media (min-width: 38em){.container{max-width:32rem}}@media (min-width: 56em){.container{max-width:38rem}}.masthead{padding-top:1rem;padding-bottom:1rem;margin-bottom:3rem;border-bottom:1px solid #eee}.masthead-title{margin-top:0;margin-bottom:0;color:#505050}.masthead-title a{color:#505050}.masthead-title small{font-size:75%;font-weight:400;color:silver;letter-spacing:0}@media (max-width: 48em){.masthead-title{text-align:center}.masthead-title small{display:none}}.sidebar{position:fixed;top:0;bottom:0;left:-14rem;width:14rem;visibility:hidden;overflow-y:auto;font-family:PT Sans,Helvetica,Arial,sans-serif;font-size:.875rem;color:rgba(255,255,255,0.6);background-color:#202020;transition:all .3s ease-in-out;backface-visibility:hidden}.sidebar a{font-weight:normal;color:#fff}@media (min-width: 30em){.sidebar{font-size:.75rem}.pagination{margin:3rem 0}.pagination-item{float:left;width:50%}.pagination-item:first-child{margin-bottom:0;border-top-left-radius:4px;border-bottom-left-radius:4px}.pagination-item:last-child{margin-left:-1px;border-top-right-radius:4px;border-bottom-right-radius:4px}}.sidebar-item{padding:1rem}.sidebar-item p:last-child{margin-bottom:0}.sidebar-nav{border-bottom:1px solid rgba(255,255,255,0.1)}.sidebar-nav-item{display:block;padding:.5rem 1rem;border-top:1px solid rgba(255,255,255,0.1)}a.pagination-item:hover{background-color:#f5f5f5}@media (min-width: 48em){.sidebar-item{padding:1.5rem}.sidebar-nav-item{padding-left:1.5rem;padding-right:1.5rem}}.sidebar-checkbox{position:absolute;opacity:0;user-select:none}.sidebar-toggle{position:absolute;top:.8rem;left:1rem;display:block;padding:.25rem .75rem;color:#505050;background-color:#fff;border-radius:.25rem;cursor:pointer;backface-visibility:hidden;transition:transform .3s ease-in-out}.sidebar-toggle:before{display:inline-block;width:1rem;height:.75rem;content:"";background-image:linear-gradient(to bottom, #505050, #505050 20%, #fff 20%, #fff 40%, #505050 40%, #505050 60%, #fff 60%, #fff 80%, #505050 80%, #505050 100%)}.sidebar-toggle:active{color:#fff;background-color:#505050}.sidebar-toggle:active:before{background-image:linear-gradient(to bottom, #fff, #fff 20%, #505050 20%, #505050 40%, #fff 40%, #fff 60%, #505050 60%, #505050 80%, #fff 80%, #fff 100%)}@media (min-width: 30.1em){.sidebar-toggle{position:fixed}}@media print{.sidebar-toggle{display:none}}.page{margin-bottom:4em}.post{margin-bottom:2em}.post:first-child{margin-top:2em}.page-title{text-transform:capitalize;color:#313131;margin-top:0}.post-title{color:#313131;margin-top:0}.post-title a{color:#313131}.post-date{display:block;margin-top:-.5rem;margin-bottom:1rem;color:#9a9a9a;font-size:0.65rem;text-transform:uppercase}.pagination{overflow:hidden;margin-left:-1rem;margin-right:-1rem;font-family:PT Sans,Helvetica,Arial,sans-serif;color:#ccc;text-align:center}.pagination-item{display:block;padding:1rem;border:1px solid #eee}.pagination-item:first-child{margin-bottom:-1px}.post{color:#212121}.post p,.post li{text-align:justify;font-size:16px;line-height:28px}.post li{margin-bottom:10px}.home-container{-webkit-display:-webkit-box;-webkit-display:-webkit-flex;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-justify-content:center;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;height:100vh;width:100vw}.home{text-align:center;width:50vw;height:30vh;transition:all 0.3s ease-in-out}.home .btn{font-family:inherit;font-size:12px;background:0;cursor:pointer;padding:25px 10px;display:inline-block;margin:15px 10px;text-transform:uppercase;letter-spacing:1px;font-weight:700;outline:0;position:relative;border:2px solid #0e83cd;color:#0e83cd;-webkit-transition:all .3s;-moz-transition:all .3s;transition:all .3s}.home .btn:hover,.home .btn:active{color:#fff;background:#0e83cd}.home .btn:hover::after,.home .btn:active::after{width:100%}.home .btn::after{content:'';position:absolute;z-index:-1;-webkit-transition:all .3s;-moz-transition:all .3s;transition:all .3s;height:100%;top:0;left:0;background:#fff}@media only screen and (max-device-width: 480px){.home{width:90vw;height:90vh}}@media only screen and (min-device-width: 481px) and (max-device-width: 990px){.home{width:75vw;height:75vh}}@media only screen and (min-device-width: 991px){.home{width:60vw;height:60vh}}
+
+  </style>
+  
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/public/icons/apple-touch-icon-57x57.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/public/icons/apple-touch-icon-114x114.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/public/icons/apple-touch-icon-72x72.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/icons/apple-touch-icon-144x144.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/public/icons/apple-touch-icon-120x120.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/public/icons/apple-touch-icon-152x152.png" />
+  <link rel="icon" type="image/png" href="/public/icons/favicon-32x32.png" sizes="32x32" />
+  <link rel="icon" type="image/png" href="/public/icons/favicon-16x16.png" sizes="16x16" />
+  <link rel="shortcut icon" href="/public/icons/favicon.ico">
+  <meta name="application-name" content="Vinay Gopinath &middot; Adventures with technology and travel" />
+  <meta name="msapplication-TileColor" content="#202020" />
+  <meta name="msapplication-TileImage" content="/public/icons/mstile-144x144.png" />
+  
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+</head>
+
+
+<body>
+  <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <p>Adventures with technology and travel</p>
+  </div>
+
+  <nav class="sidebar-nav">
+    <a class="sidebar-nav-item" href="/">Home</a>
+    <a class="sidebar-nav-item  active" href="/blog/tech/">Tech blog</a>
+    <a class="sidebar-nav-item " href="/blog/travel/">Travel blog</a>
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+      &copy; 2016. All rights reserved.
+    </p>
+  </div>
+</div>
+
+
+<!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+  content to avoid any CSS collisions with our real content. -->
+<div class="wrap">
+    <div class="masthead">
+        <div class="container">
+            <h3 class="masthead-title">
+          <a href="/" title="Home">Vinay Gopinath</a>
+          <small>Adventures with technology and travel</small>
+        </h3>
+        </div>
+    </div>
+
+    <div class="container content">
+        <div class="post">
+  <h2 class="post-title">SEO in Angular2 with ng2-meta</h2>
+  <span class="post-date">25 Jul 2016</span>
+  <p>Updating meta tags such as title and description as the route changes is essential for SEO in any single page application. While building <a href="http://vinaygopinath.me/tech/2016/07/25/nomad-couple/">Nomad Couple</a>, an Angular2 site, I realized that there weren’t any Angular2 meta-tags libraries, so I decided to build one. I’ve released it as <a href="https://github.com/vinaygopinath/ng2-meta">ng2-meta</a> on npm.</p>
+
+<p>ng2-meta listens to router changes and updates <code class="highlighter-rouge">&lt;meta&gt;</code> tags with the values provided in the route’s configuration.</p>
+
+<p>To get started, install ng2-meta</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>npm install --save ng2-meta
+</code></pre>
+</div>
+
+<p>Add a <code class="highlighter-rouge">data</code> object to each of your routes and define meta tags (title, description, url etc) relevant to the route.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kr">const</span> <span class="nx">routes</span><span class="err">:</span> <span class="nx">RouterConfig</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="p">{</span>
+    <span class="na">path</span><span class="p">:</span> <span class="s1">'home'</span><span class="p">,</span>
+    <span class="na">component</span><span class="p">:</span> <span class="nx">HomeComponent</span><span class="p">,</span>
+    <span class="na">data</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">meta</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">title</span><span class="p">:</span> <span class="s1">'Home page'</span><span class="p">,</span>
+        <span class="na">description</span><span class="p">:</span> <span class="s1">'Description of the home page'</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+  <span class="p">{</span>
+    <span class="na">path</span><span class="p">:</span> <span class="s1">'dashboard'</span><span class="p">,</span>
+    <span class="na">component</span><span class="p">:</span> <span class="nx">DashboardComponent</span><span class="p">,</span>
+    <span class="na">data</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">meta</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">title</span><span class="p">:</span> <span class="s1">'Dashboard'</span><span class="p">,</span>
+        <span class="na">description</span><span class="p">:</span> <span class="s1">'Description of the dashboard page'</span><span class="p">,</span>
+        <span class="s1">'og:image'</span><span class="p">:</span> <span class="s1">'http://example.com/dashboard-image.png'</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">];</span>
+</code></pre>
+</div>
+
+<p>Inject Angular2’s <code class="highlighter-rouge">Title</code> service as well as ng2-meta’s <code class="highlighter-rouge">MetaService</code> into your app. ng2-meta uses the Title service internally to automatically change the page title when the <code class="highlighter-rouge">title</code> meta tag is updated.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">Title</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'@angular/platform-browser'</span><span class="p">;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">MetaService</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'ng2-meta'</span><span class="p">;</span>
+<span class="p">...</span>
+<span class="nx">bootstrap</span><span class="p">(</span><span class="nx">AppComponent</span><span class="p">,</span> <span class="p">[</span>
+  <span class="nx">HTTP_PROVIDERS</span><span class="p">,</span>
+  <span class="p">...</span>
+  <span class="nx">Title</span><span class="p">,</span>
+  <span class="nx">MetaService</span>
+<span class="p">]);</span>
+</code></pre>
+</div>
+
+<p>Add MetaService as a provider to your root component</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">MetaService</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'ng2-meta'</span><span class="p">;</span>
+
+<span class="err">@</span><span class="nx">Component</span><span class="p">({</span>
+  <span class="p">...</span>
+  <span class="na">providers</span><span class="p">:</span> <span class="p">[</span><span class="nx">MetaService</span><span class="p">]</span>
+<span class="p">})</span>
+</code></pre>
+</div>
+
+<p>If you’d like to update the page title and meta tags from a component or service, say, after receiving data from a HTTP call, you can use <code class="highlighter-rouge">MetaService</code>.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kr">class</span> <span class="nx">ProductComponent</span> <span class="p">{</span>
+  <span class="p">...</span>
+  <span class="nx">constructor</span><span class="p">(</span><span class="kr">private</span> <span class="nx">metaService</span><span class="err">:</span> <span class="nx">MetaService</span><span class="p">)</span> <span class="p">{}</span>
+
+  <span class="nx">ngOnInit</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">product</span> <span class="o">=</span> <span class="c1">//HTTP GET for product in catalogue</span>
+    <span class="nx">metaService</span><span class="p">.</span><span class="nx">setTitle</span><span class="p">(</span><span class="s1">'Product page for '</span><span class="o">+</span><span class="k">this</span><span class="p">.</span><span class="nx">product</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
+    <span class="nx">metaService</span><span class="p">.</span><span class="nx">setTag</span><span class="p">(</span><span class="s1">'og:image'</span><span class="p">,</span><span class="k">this</span><span class="p">.</span><span class="nx">product</span><span class="p">.</span><span class="nx">imageURL</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>It’s a good idea to add some fallback meta tags for use by crawlers that don’t execute Javascript, like Facebook and Twitter.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;html&gt;</span>
+ <span class="nt">&lt;head&gt;</span>
+  <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"title"</span> <span class="na">content=</span><span class="s">"Website Name"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"og:title"</span> <span class="na">content=</span><span class="s">"Website Name"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"description"</span> <span class="na">content=</span><span class="s">"General site description"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"og:description"</span> <span class="na">content=</span><span class="s">"General site description"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"og:image"</span> <span class="na">content=</span><span class="s">"http://abc.com/general-image.png"</span><span class="nt">&gt;</span>
+ <span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre>
+</div>
+<p>The fallback meta tags are used to generate the rich snippet shown when your website is shared on Facebook (Just make sure to add <a href="http://ogp.me/">Open graph</a> meta tags).
+<a href="/public/images/ng2-meta/facebook-share.png"><img src="/public/images/ng2-meta/facebook-share.png" alt="Nomad Couple - Facebook share rich snippet" /></a></p>
+
+<p>Check out <a href="https://vinaygopinath.github.io/NomadCouple/">Nomad Couple</a> as a demo of ng2-meta. Its source code is available <a href="https://github.com/vinaygopinath/NomadCouple">here</a>.</p>
+
+<p>I’m currently investigating server-side rendering using <a href="https://github.com/angular/universal">angular/universal</a> and plan to update ng2-meta to support it.</p>
+
+</div>
+
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [{
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "@id": "https://vinaygopinath.me",
+        "name": "Home"
+      }
+    },{
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "@id": "https://vinaygopinath.me/tech",
+        "name": "Tech"
+      }
+    },{
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "@id": "https://vinaygopinath.me/blog/tech/seo-in-angular2-with-ng2-meta/",
+        "name": "SEO in Angular2 with ng2-meta"
+      }
+    }]
+  }
+</script>
+
+<div id="disqus_thread"></div>
+<script>
+  var disqus_config = function () {
+    this.page.url = 'https://vinaygopinath.me/blog/tech/seo-in-angular2-with-ng2-meta/';
+    this.page.identifier = '/blog/tech/seo-in-angular2-with-ng2-meta/';
+  };
+  (function() {
+    var d = document, s = d.createElement('script');
+    s.src = '//vinaygopinath.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>You don't seem to have Javascript enabled - To participate in the discussion, consider allowing Javascript on this site</noscript>
+
+<!--<div class="related">
+<h2>Related Posts</h2>
+<ul class="related-posts">
+
+<li>
+<h3>
+<a href="/blog/travel/overheard-in-lodz/">
+Overheard in Łódź
+<small>25 Aug 2016</small>
+</a>
+</h3>
+</li>
+
+<li>
+<h3>
+<a href="/blog/tech/nomad-couple/">
+Nomad Couple
+<small>25 Jul 2016</small>
+</a>
+</h3>
+</li>
+
+<li>
+<h3>
+<a href="/blog/tech/sending-emails-from-ghost-with-nodemailer-and-sparkpost/">
+Sending emails from Ghost with Nodemailer and SparkPost
+<small>14 Jun 2016</small>
+</a>
+</h3>
+</li>
+
+</ul>
+</div>-->
+
+    </div>
+</div>
+
+<label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+<script>
+    (function(document) {
+      var toggle = document.querySelector('.sidebar-toggle');
+      var sidebar = document.querySelector('#sidebar');
+      var checkbox = document.querySelector('#sidebar-checkbox');
+
+      document.addEventListener('click', function(e) {
+        var target = e.target;
+
+        if (!checkbox.checked ||
+          sidebar.contains(target) ||
+          (target === checkbox || target === toggle)) return;
+
+        checkbox.checked = false;
+      }, false);
+    })(document);
+</script>
+  
+  <link rel="stylesheet" href="/public/styles/site.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans:400%7CLato:400">
+  
+  <script>
+  window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+  ga('create', 'UA-78016218-1', 'auto');
+  ga('send', 'pageview');
+  </script>
+  <script async src='https://www.google-analytics.com/analytics.js'></script>
+</body>
+
+</html>

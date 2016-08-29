@@ -4,7 +4,7 @@
  <title>Vinay Gopinath</title>
  <link href="/atom.xml" rel="self"/>
  <link href="/"/>
- <updated>2016-08-17T00:06:39+02:00</updated>
+ <updated>2016-08-25T13:41:22+02:00</updated>
  <id></id>
  <author>
    <name></name>
@@ -13,10 +13,22 @@
 
  
  <entry>
+   <title>Overheard in Łódź</title>
+   <link href="/blog/travel/overheard-in-lodz/"/>
+   <updated>2016-08-25T12:59:36+02:00</updated>
+   <id>/blog/travel/overheard-in-lodz</id>
+   <content type="html">&lt;blockquote&gt;
+  &lt;p&gt;We buy things we don’t need, with money we don’t have, to impress people we don’t like.
+&lt;br /&gt;– Piotrkowska Street, Łódź&lt;/p&gt;
+&lt;/blockquote&gt;
+</content>
+ </entry>
+ 
+ <entry>
    <title>SEO in Angular2 with ng2-meta</title>
-   <link href="/tech/2016/07/25/seo-in-angular2-with-ng2-meta/"/>
+   <link href="/blog/tech/seo-in-angular2-with-ng2-meta/"/>
    <updated>2016-07-25T20:02:22+02:00</updated>
-   <id>/tech/2016/07/25/seo-in-angular2-with-ng2-meta</id>
+   <id>/blog/tech/seo-in-angular2-with-ng2-meta</id>
    <content type="html">&lt;p&gt;Updating meta tags such as title and description as the route changes is essential for SEO in any single page application. While building &lt;a href=&quot;http://vinaygopinath.me/tech/2016/07/25/nomad-couple/&quot;&gt;Nomad Couple&lt;/a&gt;, an Angular2 site, I realized that there weren’t any Angular2 meta-tags libraries, so I decided to build one. I’ve released it as &lt;a href=&quot;https://github.com/vinaygopinath/ng2-meta&quot;&gt;ng2-meta&lt;/a&gt; on npm.&lt;/p&gt;
 
 &lt;p&gt;ng2-meta listens to router changes and updates &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;meta&amp;gt;&lt;/code&gt; tags with the values provided in the route’s configuration.&lt;/p&gt;
@@ -119,9 +131,9 @@
  
  <entry>
    <title>Nomad Couple</title>
-   <link href="/tech/2016/07/25/nomad-couple/"/>
+   <link href="/blog/tech/nomad-couple/"/>
    <updated>2016-07-25T16:31:07+02:00</updated>
-   <id>/tech/2016/07/25/nomad-couple</id>
+   <id>/blog/tech/nomad-couple</id>
    <content type="html">&lt;p&gt;I’m Indian, and my girlfriend is Polish. We love travelling and we’d like to visit a lot of places, but there are &lt;a href=&quot;https://en.wikipedia.org/wiki/Visa_requirements_for_Indian_citizens#Visa_requirements_map&quot;&gt;surprisingly few countries&lt;/a&gt; that I can visit without a visa. Getting a visa can be tedious. (Quite often, I’ve had to  personally visit consulates and submit bank account statements, travel insurance and cover letters along with my visa application form). Finding countries that allow both of us to visit without a visa or obtain a visa on arrival is hard. That’s why it occurred to me to build &lt;a href=&quot;https://vinaygopinath.github.io/NomadCouple/&quot;&gt;Nomad Couple&lt;/a&gt;, a website that provides information on visa requirements for couples.&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;/public/images/nomad-couple/home.png&quot;&gt;&lt;img src=&quot;/public/images/nomad-couple/home.png&quot; alt=&quot;Nomad Couple home page&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
@@ -138,9 +150,9 @@
  
  <entry>
    <title>Sending emails from Ghost with Nodemailer and SparkPost</title>
-   <link href="/tech/2016/06/14/sending-emails-from-ghost-with-nodemailer-and-sparkpost/"/>
+   <link href="/blog/tech/sending-emails-from-ghost-with-nodemailer-and-sparkpost/"/>
    <updated>2016-06-14T01:08:22+02:00</updated>
-   <id>/tech/2016/06/14/sending-emails-from-ghost-with-nodemailer-and-sparkpost</id>
+   <id>/blog/tech/sending-emails-from-ghost-with-nodemailer-and-sparkpost</id>
    <content type="html">&lt;p&gt;While I personally prefer Jekyll to Ghost in the battle of minimalistic CMS platforms, I recently set up a &lt;a href=&quot;https://ghost.org/&quot;&gt;Ghost&lt;/a&gt; blog for work and connected the built-in &lt;a href=&quot;https://github.com/nodemailer/nodemailer&quot;&gt;Nodemailer&lt;/a&gt; email module with &lt;a href=&quot;https://www.sparkpost.com&quot;&gt;SparkPost&lt;/a&gt;, an email service. Here’s how:&lt;/p&gt;
 
 &lt;ol&gt;
@@ -177,9 +189,9 @@
  
  <entry>
    <title>Setting up CORS with pre-flight request handling for development use in Node + Express</title>
-   <link href="/tech/2016/05/23/enable-cors-with-pre-flight/"/>
+   <link href="/blog/tech/enable-cors-with-pre-flight/"/>
    <updated>2016-05-23T23:20:37+02:00</updated>
-   <id>/tech/2016/05/23/enable-cors-with-pre-flight</id>
+   <id>/blog/tech/enable-cors-with-pre-flight</id>
    <content type="html">&lt;p&gt;“Cross-Origin Resource Sharing” (CORS)-related errors are a common occurrence while developing a site with a separate frontend and API backend. While the &lt;a href=&quot;https://github.com/expressjs/cors&quot;&gt;cors module&lt;/a&gt; can set headers and respond to pre-flight requests, I didn’t find any documentation to set it up only in the Node development environment (assuming you don’t want to expose your APIs to requests from multiple domains).&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kr&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;express&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;express&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
@@ -191,7 +203,7 @@
     &lt;span class=&quot;nx&quot;&gt;res&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;header&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;Access-Control-Allow-Origin&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;*&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
     &lt;span class=&quot;nx&quot;&gt;res&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;header&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;Access-Control-Allow-Methods&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;GET,PUT,POST,DELETE,PATCH,OPTIONS&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
     &lt;span class=&quot;nx&quot;&gt;res&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;header&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;Access-Control-Allow-Headers&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;Content-Type, Authorization, Content-Length, X-Requested-With&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//Add other headers used in your requests&lt;/span&gt;
-    
+
     &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;OPTIONS&#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;req&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;method&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
       &lt;span class=&quot;nx&quot;&gt;res&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;sendStatus&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;200&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
     &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
@@ -208,15 +220,14 @@
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;NODE_ENV&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;development node index.js
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
-
 </content>
  </entry>
  
  <entry>
    <title>URL redirection with Browsersync</title>
-   <link href="/tech/2016/05/17/url-redirection-with-browsersync/"/>
+   <link href="/blog/tech/url-redirection-with-browsersync/"/>
    <updated>2016-05-17T16:57:05+02:00</updated>
-   <id>/tech/2016/05/17/url-redirection-with-browsersync</id>
+   <id>/blog/tech/url-redirection-with-browsersync</id>
    <content type="html">&lt;p&gt;I started working on &lt;a href=&quot;https://www.gapsquad.com&quot;&gt;GapSquad’s website&lt;/a&gt; recently, and I had to redirect some URL requests in the Gulp+Browsersync dev environment to alternate paths in the project directory (to recreate the behaviour of the nginx production server). This can be done using &lt;a href=&quot;https://www.browsersync.io/docs/options/&quot;&gt;Browsersync options&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;The project structure is organized like this&lt;/p&gt;
@@ -273,15 +284,14 @@
   &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
-
 </content>
  </entry>
  
  <entry>
    <title>Jekyll updates</title>
-   <link href="/tech/2016/04/14/jekyll-updates/"/>
+   <link href="/blog/tech/jekyll-updates/"/>
    <updated>2016-04-14T11:11:49+02:00</updated>
-   <id>/tech/2016/04/14/jekyll-updates</id>
+   <id>/blog/tech/jekyll-updates</id>
    <content type="html">&lt;p&gt;I’ve been exploring the Jekyll ecosystem over the past couple of weeks, and consider me sold - I really like the simplicity of building a static site with pages, posts and collections. I know that neither Jekyll nor Ghost will dethrone WordPress as the layman’s choice of CMS, but given all of the work coming out of the node.js and Ruby camps, WordPress has got some stiff competition, and deservedly so.&lt;/p&gt;
 
 &lt;h3 id=&quot;project-structure&quot;&gt;Project Structure&lt;/h3&gt;
@@ -291,10 +301,10 @@
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  _posts
     - tech
       - 2016-04-14-tech-post-title.md
-      - 2016-03-29-another-tech-post-title.md 
-    - travel 
+      - 2016-03-29-another-tech-post-title.md
+    - travel
       - 2016-04-10-travel-post-title.md
-      - 2016-03-09-another-travel-post-title.md 
+      - 2016-03-09-another-travel-post-title.md
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
@@ -326,7 +336,7 @@
 
 &lt;p&gt;I found that I needed Octopress and octopress-paginate to set up paginated categories. I created a new file in &lt;code class=&quot;highlighter-rouge&quot;&gt;_layouts&lt;/code&gt; called category-page.html with this content&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;   
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
 ---
 layout: default
 ---
@@ -337,10 +347,10 @@ layout: default
         - Page {{paginator.page}}
       {% endif %}
   &lt;span class=&quot;nt&quot;&gt;&amp;lt;/h1&amp;gt;&lt;/span&gt;
-  
+
   &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;posts&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-    {% assign index = true %} 
-    {% for post in paginator.posts %} 
+    {% assign index = true %}
+    {% for post in paginator.posts %}
     {% assign content = post.content %}
     &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;post&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
         &lt;span class=&quot;nt&quot;&gt;&amp;lt;h2&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;post-title&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
@@ -348,11 +358,11 @@ layout: default
             {{ post.title }}
           &lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
         &lt;span class=&quot;nt&quot;&gt;&amp;lt;/h2&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;span&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;post-date&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;{{ post.date | date_to_string }}&lt;span class=&quot;nt&quot;&gt;&amp;lt;/span&amp;gt;&lt;/span&gt; 
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;span&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;post-date&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;{{ post.date | date_to_string }}&lt;span class=&quot;nt&quot;&gt;&amp;lt;/span&amp;gt;&lt;/span&gt;
         {{ post.excerpt }}
     &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
     {% unless post == paginator.posts.last %}
-    	&lt;span class=&quot;nt&quot;&gt;&amp;lt;hr&amp;gt;&lt;/span&gt; 
+    	&lt;span class=&quot;nt&quot;&gt;&amp;lt;hr&amp;gt;&lt;/span&gt;
     {% endunless %}
     {% endfor %}
   &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
@@ -405,15 +415,14 @@ layout: default
 
 &lt;p&gt;&lt;a href=&quot;https://developers.google.com/speed/pagespeed/insights/?url=vinaygopinath.me&quot;&gt;Pagespeed insights score&lt;/a&gt; for the site:
 &lt;img src=&quot;http://i.imgur.com/iJhrRzN.png&quot; alt=&quot;99/100 on both mobile and desktop&quot; /&gt;&lt;/p&gt;
-
 </content>
  </entry>
  
  <entry>
    <title>Hello</title>
-   <link href="/tech/2016/02/17/hello/"/>
+   <link href="/blog/tech/hello/"/>
    <updated>2016-02-17T10:41:00+01:00</updated>
-   <id>/tech/2016/02/17/hello</id>
+   <id>/blog/tech/hello</id>
    <content type="html">&lt;p&gt;Hello,&lt;/p&gt;
 
 &lt;p&gt;Ghost is just not enough! I’d heard good things about Jekyll for sometime now, so I decided to check things out and host my blog on Github Pages.&lt;/p&gt;
@@ -433,9 +442,9 @@ layout: default
  
  <entry>
    <title>Previous blog</title>
-   <link href="/tech/2016/02/17/previous-blog/"/>
+   <link href="/blog/tech/previous-blog/"/>
    <updated>2016-02-17T10:40:00+01:00</updated>
-   <id>/tech/2016/02/17/previous-blog</id>
+   <id>/blog/tech/previous-blog</id>
    <content type="html">&lt;p&gt;The previous incarnation of this blog lives in WordPress land and has my posts about AngularJS, Android, Ubuntu and other tools and frameworks I’ve worked with. You can check it out &lt;a href=&quot;https://vinaygopinath.wordpress.com/category/tech/&quot;&gt;here&lt;/a&gt;&lt;/p&gt;
 </content>
  </entry>

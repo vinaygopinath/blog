@@ -15,12 +15,12 @@
   
   <title>
     
-    About &middot; Vinay Gopinath
+    URL redirection with Browsersync &middot; Vinay Gopinath
     
   </title>
-  <meta name="description" content="Vinay Gopinath is a full-stack developer with a front-end focus.">
-  <meta name="og:description" content="Vinay Gopinath is a full-stack developer with a front-end focus.">
-  <link rel="canonical" href="https://vinaygopinath.me/about/">
+  <meta name="description" content="Redirect URLs to an alternate path on your localhost site with Browsersync">
+  <meta name="og:description" content="Redirect URLs to an alternate path on your localhost site with Browsersync">
+  <link rel="canonical" href="https://vinaygopinath.me/blog/tech/url-redirection-with-browsersync/">
   
   <style type="text/css">
   
@@ -60,7 +60,7 @@ styles, `#sidebar-checkbox` for behavior. -->
 
   <nav class="sidebar-nav">
     <a class="sidebar-nav-item" href="/">Home</a>
-    <a class="sidebar-nav-item " href="/blog/tech/">Tech blog</a>
+    <a class="sidebar-nav-item  active" href="/blog/tech/">Tech blog</a>
     <a class="sidebar-nav-item " href="/blog/travel/">Travel blog</a>
   </nav>
 
@@ -85,17 +85,145 @@ styles, `#sidebar-checkbox` for behavior. -->
     </div>
 
     <div class="container content">
-        <div class="page">
-  <h1 class="page-title">About</h1>
-  <p>Hi, I’m Vinay Gopinath. You can find me on</p>
+        <div class="post">
+  <h2 class="post-title">URL redirection with Browsersync</h2>
+  <span class="post-date">17 May 2016</span>
+  <p>I started working on <a href="https://www.gapsquad.com">GapSquad’s website</a> recently, and I had to redirect some URL requests in the Gulp+Browsersync dev environment to alternate paths in the project directory (to recreate the behaviour of the nginx production server). This can be done using <a href="https://www.browsersync.io/docs/options/">Browsersync options</a>.</p>
 
-<ul>
-  <li><a href="https://google.com/+VinayGopinath">Google+</a></li>
-  <li><a href="https://github.com/vinaygopinath">GitHub</a></li>
-  <li><a href="http://stackoverflow.com/users/293847/weneigh">StackOverflow</a></li>
-</ul>
+<p>The project structure is organized like this</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>app
+- - - pages
+- - - - - - jobs.html
+- - - - - - pricing.html
+- - - - - - how-it-works.html
+- - - index.html
+</code></pre>
+</div>
+
+<p>index.html has references to <code class="highlighter-rouge">/pricing</code>, <code class="highlighter-rouge">/jobs</code> and <code class="highlighter-rouge">/how-it-works</code>, all of which are redirected to the corresponding HTML files in the <code class="highlighter-rouge">pages</code> directory on the production server using nginx configuration.</p>
+
+<p>I wanted to use Browsersync locally and recreate the behaviour of the server, without rewriting links specifically for the dev environment.</p>
+
+<h3 id="option-1---use-a-middleware">Option 1 - Use a middleware</h3>
+<p>Browsersync lets you define middleware to manipulate request and response data. I used it to rewrite <code class="highlighter-rouge">/pricing</code> to <code class="highlighter-rouge">/pages/pricing.html</code> in my Browsersync Gulp task.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="nx">browserSync</span><span class="p">.</span><span class="nx">init</span><span class="p">({</span>
+    <span class="na">server</span><span class="p">:</span> <span class="p">{</span>
+      <span class="c1">//Middleware paths are relative to the base directory</span>
+      <span class="na">baseDir</span><span class="p">:</span> <span class="s1">'app'</span>
+    <span class="p">},</span>
+    <span class="na">middleware</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span><span class="nx">res</span><span class="p">,</span><span class="nx">next</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">url</span> <span class="o">===</span> <span class="s1">'/pricing'</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">req</span><span class="p">.</span><span class="nx">url</span> <span class="o">=</span> <span class="s1">'/pages/pricing.html'</span><span class="p">;</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">url</span> <span class="o">===</span> <span class="s1">'/how-it-works'</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">req</span><span class="p">.</span><span class="nx">url</span> <span class="o">=</span> <span class="s1">'/pages/how-it-works.html'</span><span class="p">;</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">url</span> <span class="o">===</span> <span class="s1">'/jobs'</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">req</span><span class="p">.</span><span class="nx">url</span> <span class="o">=</span> <span class="s1">'/pages/jobs.html'</span><span class="p">;</span>
+      <span class="p">}</span>
+      <span class="k">return</span> <span class="nx">next</span><span class="p">();</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+</code></pre>
+</div>
+<p>When the request URL matches the ones that need to be redirected, I’ve simply replaced the request URL with the file path. You can also use JS regular expressions to match and redirect URLs.</p>
+
+<h3 id="option-2---define-server-routes">Option 2 - Define server routes</h3>
+<p>The more straightforward option is to define routes in the server config.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="nx">browserSync</span><span class="p">.</span><span class="nx">init</span><span class="p">({</span>
+    <span class="na">server</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">baseDir</span><span class="p">:</span> <span class="s1">'app'</span><span class="p">,</span>
+      <span class="c1">//Route paths are not relative to the base directory</span>
+      <span class="na">routes</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">'/pricing'</span><span class="p">:</span> <span class="s1">'app/pages/pricing.html'</span><span class="p">,</span>
+        <span class="s1">'/how-it-works'</span><span class="p">:</span> <span class="s1">'app/pages/how-it-works.html'</span><span class="p">,</span>
+        <span class="s1">'/jobs'</span><span class="p">:</span> <span class="s1">'app/pages/jobs.html'</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+</code></pre>
+</div>
 
 </div>
+
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [{
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "@id": "https://vinaygopinath.me",
+        "name": "Home"
+      }
+    },{
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "@id": "https://vinaygopinath.me/tech",
+        "name": "Tech"
+      }
+    },{
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "@id": "https://vinaygopinath.me/blog/tech/url-redirection-with-browsersync/",
+        "name": "URL redirection with Browsersync"
+      }
+    }]
+  }
+</script>
+
+<div id="disqus_thread"></div>
+<script>
+  var disqus_config = function () {
+    this.page.url = 'https://vinaygopinath.me/blog/tech/url-redirection-with-browsersync/';
+    this.page.identifier = '/blog/tech/url-redirection-with-browsersync/';
+  };
+  (function() {
+    var d = document, s = d.createElement('script');
+    s.src = '//vinaygopinath.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>You don't seem to have Javascript enabled - To participate in the discussion, consider allowing Javascript on this site</noscript>
+
+<!--<div class="related">
+<h2>Related Posts</h2>
+<ul class="related-posts">
+
+<li>
+<h3>
+<a href="/blog/travel/overheard-in-lodz/">
+Overheard in Łódź
+<small>25 Aug 2016</small>
+</a>
+</h3>
+</li>
+
+<li>
+<h3>
+<a href="/blog/tech/seo-in-angular2-with-ng2-meta/">
+SEO in Angular2 with ng2-meta
+<small>25 Jul 2016</small>
+</a>
+</h3>
+</li>
+
+<li>
+<h3>
+<a href="/blog/tech/nomad-couple/">
+Nomad Couple
+<small>25 Jul 2016</small>
+</a>
+</h3>
+</li>
+
+</ul>
+</div>-->
 
     </div>
 </div>

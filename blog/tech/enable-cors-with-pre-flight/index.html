@@ -15,12 +15,12 @@
   
   <title>
     
-    Tech - page 2 &middot; Vinay Gopinath
+    Setting up CORS with pre-flight request handling for development use in Node + Express &middot; Vinay Gopinath
     
   </title>
-  <meta name="description" content="Blog posts on front-end development, Node, automation tools and Android">
-  <meta name="og:description" content="Blog posts on front-end development, Node, automation tools and Android">
-  <link rel="canonical" href="https://vinaygopinath.me/tech/2/">
+  <meta name="description" content="Set up express routing to handle CORS + pre-flight request handling in development environment using Nodejs and Express.">
+  <meta name="og:description" content="Set up express routing to handle CORS + pre-flight request handling in development environment using Nodejs and Express.">
+  <link rel="canonical" href="https://vinaygopinath.me/blog/tech/enable-cors-with-pre-flight/">
   
   <style type="text/css">
   
@@ -57,13 +57,13 @@ styles, `#sidebar-checkbox` for behavior. -->
   <div class="sidebar-item">
     <p>Adventures with technology and travel</p>
   </div>
-  
+
   <nav class="sidebar-nav">
     <a class="sidebar-nav-item" href="/">Home</a>
-    <a class="sidebar-nav-item  active" href="/tech/">Tech</a>
-    <a class="sidebar-nav-item " href="/travel/">Travel</a>
+    <a class="sidebar-nav-item  active" href="/blog/tech/">Tech blog</a>
+    <a class="sidebar-nav-item " href="/blog/travel/">Travel blog</a>
   </nav>
-  
+
   <div class="sidebar-item">
     <p>
       &copy; 2016. All rights reserved.
@@ -85,74 +85,118 @@ styles, `#sidebar-checkbox` for behavior. -->
     </div>
 
     <div class="container content">
-        <div class="page">
-  <h1 class="page-title">tech
-      
-        - Page 2
-      
-  </h1>
-  
-  <div class="posts">
-     
-     
-    
-    <div class="post">
-        <h2 class="post-title">
-      <a href="/tech/2016/04/14/jekyll-updates/">
-        Jekyll updates
-      </a>
-    </h2>
+        <div class="post">
+  <h2 class="post-title">Setting up CORS with pre-flight request handling for development use in Node + Express</h2>
+  <span class="post-date">23 May 2016</span>
+  <p>“Cross-Origin Resource Sharing” (CORS)-related errors are a common occurrence while developing a site with a separate frontend and API backend. While the <a href="https://github.com/expressjs/cors">cors module</a> can set headers and respond to pre-flight requests, I didn’t find any documentation to set it up only in the Node development environment (assuming you don’t want to expose your APIs to requests from multiple domains).</p>
 
-        <span class="post-date">14 Apr 2016</span> <p>I’ve been exploring the Jekyll ecosystem over the past couple of weeks, and consider me sold - I really like the simplicity of building a static site with pages, posts and collections. I know that neither Jekyll nor Ghost will dethrone WordPress as the layman’s choice of CMS, but given all of the work coming out of the node.js and Ruby camps, WordPress has got some stiff competition, and deservedly so.</p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kr">const</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'express'</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">express</span><span class="p">();</span>
 
+<span class="k">if</span> <span class="p">(</span><span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'env'</span><span class="p">)</span> <span class="o">===</span> <span class="s1">'development'</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Enabling CORS'</span><span class="p">);</span>
+  <span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">header</span><span class="p">(</span><span class="s1">'Access-Control-Allow-Origin'</span><span class="p">,</span> <span class="s1">'*'</span><span class="p">);</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">header</span><span class="p">(</span><span class="s1">'Access-Control-Allow-Methods'</span><span class="p">,</span> <span class="s1">'GET,PUT,POST,DELETE,PATCH,OPTIONS'</span><span class="p">);</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">header</span><span class="p">(</span><span class="s1">'Access-Control-Allow-Headers'</span><span class="p">,</span> <span class="s1">'Content-Type, Authorization, Content-Length, X-Requested-With'</span><span class="p">);</span> <span class="c1">//Add other headers used in your requests</span>
 
-    </div>
-    
-    <hr> 
-    
-     
-    
-    <div class="post">
-        <h2 class="post-title">
-      <a href="/tech/2016/02/17/hello/">
-        Hello
-      </a>
-    </h2>
+    <span class="k">if</span> <span class="p">(</span><span class="s1">'OPTIONS'</span> <span class="o">==</span> <span class="nx">req</span><span class="p">.</span><span class="nx">method</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">res</span><span class="p">.</span><span class="nx">sendStatus</span><span class="p">(</span><span class="mi">200</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="nx">next</span><span class="p">();</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+<span class="p">}</span>
 
-        <span class="post-date">17 Feb 2016</span> <p>Hello,</p>
+<span class="c1">//Set up express routes here</span>
+</code></pre>
+</div>
+<p>This enables CORS for all Express routes and responds to pre-flight OPTIONS requests with HTTP status OK (200) only during development. If you haven’t already set your <code class="highlighter-rouge">NODE_ENV</code> to <code class="highlighter-rouge">development</code>, you can do so and start your server like so</p>
 
-
-    </div>
-    
-    <hr> 
-    
-     
-    
-    <div class="post">
-        <h2 class="post-title">
-      <a href="/tech/2016/02/17/previous-blog/">
-        Previous blog
-      </a>
-    </h2>
-
-        <span class="post-date">17 Feb 2016</span> <p>The previous incarnation of this blog lives in WordPress land and has my posts about AngularJS, Android, Ubuntu and other tools and frameworks I’ve worked with. You can check it out <a href="https://vinaygopinath.wordpress.com/category/tech/">here</a></p>
-
-    </div>
-    
-    
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="nv">NODE_ENV</span><span class="o">=</span>development node index.js
+</code></pre>
 </div>
 
-<div class="pagination">
-  
-  <span class="pagination-item older">Older</span>
-  
-  
-  
-  <a class="pagination-item newer" href="/tech">Newer</a>
-  
-  
 </div>
-</div>
+
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [{
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "@id": "https://vinaygopinath.me",
+        "name": "Home"
+      }
+    },{
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "@id": "https://vinaygopinath.me/tech",
+        "name": "Tech"
+      }
+    },{
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "@id": "https://vinaygopinath.me/blog/tech/enable-cors-with-pre-flight/",
+        "name": "Setting up CORS with pre-flight request handling for development use in Node + Express"
+      }
+    }]
+  }
+</script>
+
+<div id="disqus_thread"></div>
+<script>
+  var disqus_config = function () {
+    this.page.url = 'https://vinaygopinath.me/blog/tech/enable-cors-with-pre-flight/';
+    this.page.identifier = '/blog/tech/enable-cors-with-pre-flight/';
+  };
+  (function() {
+    var d = document, s = d.createElement('script');
+    s.src = '//vinaygopinath.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>You don't seem to have Javascript enabled - To participate in the discussion, consider allowing Javascript on this site</noscript>
+
+<!--<div class="related">
+<h2>Related Posts</h2>
+<ul class="related-posts">
+
+<li>
+<h3>
+<a href="/blog/travel/overheard-in-lodz/">
+Overheard in Łódź
+<small>25 Aug 2016</small>
+</a>
+</h3>
+</li>
+
+<li>
+<h3>
+<a href="/blog/tech/seo-in-angular2-with-ng2-meta/">
+SEO in Angular2 with ng2-meta
+<small>25 Jul 2016</small>
+</a>
+</h3>
+</li>
+
+<li>
+<h3>
+<a href="/blog/tech/nomad-couple/">
+Nomad Couple
+<small>25 Jul 2016</small>
+</a>
+</h3>
+</li>
+
+</ul>
+</div>-->
+
     </div>
 </div>
 
