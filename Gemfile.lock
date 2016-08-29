@@ -33,6 +33,8 @@ GEM
       tilt (~> 2.0)
     jekyll-gist (1.4.0)
       octokit (~> 4.2)
+    jekyll-redirect-from (0.11.0)
+      jekyll (>= 2.0)
     jekyll-sass-converter (1.4.0)
       sass (~> 3.4)
     jekyll-watch (1.3.1)
@@ -86,6 +88,7 @@ DEPENDENCIES
   jekyll
   jekyll-assets
   jekyll-gist
+  jekyll-redirect-from
   jekyll-watch
   kramdown
   octopress (~> 3.0)

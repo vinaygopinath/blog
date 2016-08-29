@@ -6,9 +6,10 @@ gem 'jekyll-gist'
 gem 'kramdown'
 gem 'rouge'
 gem 'jekyll-watch'
-gem "jekyll-assets"
+gem 'jekyll-assets'
 
 group :jekyll_plugins do
+  gem 'jekyll-redirect-from'
   gem 'octopress-hooks', git: 'https://github.com/octopress/hooks.git'
   gem 'octopress-paginate'
 end

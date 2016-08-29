@@ -4,6 +4,7 @@ title: Nomad Couple
 categories: ["tech"]
 description: Nomad Couple is an angular2 website with information on visa requirements for couples
 date: 2016-07-25T16:31:07+02:00
+redirect_from: ["/tech/2016/07/25/nomad-couple/", "/tech/2016/07/25/nomad-couple"]
 ---
 
 I'm Indian, and my girlfriend is Polish. We love travelling and we'd like to visit a lot of places, but there are [surprisingly few countries](https://en.wikipedia.org/wiki/Visa_requirements_for_Indian_citizens#Visa_requirements_map) that I can visit without a visa. Getting a visa can be tedious. (Quite often, I've had to  personally visit consulates and submit bank account statements, travel insurance and cover letters along with my visa application form). Finding countries that allow both of us to visit without a visa or obtain a visa on arrival is hard. That's why it occurred to me to build [Nomad Couple](https://vinaygopinath.github.io/NomadCouple/), a website that provides information on visa requirements for couples.

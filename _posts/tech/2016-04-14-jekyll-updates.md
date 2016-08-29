@@ -4,6 +4,7 @@ title: Jekyll updates
 categories: ["tech"]
 description: Plugins and improvements of my Jekyll blog
 date: 2016-04-14T11:11:49+02:00
+redirect_from: ["/tech/2016/04/14/jekyll-updates/", "/tech/2016/04/14/jekyll-updates"]
 ---
 
 I've been exploring the Jekyll ecosystem over the past couple of weeks, and consider me sold - I really like the simplicity of building a static site with pages, posts and collections. I know that neither Jekyll nor Ghost will dethrone WordPress as the layman's choice of CMS, but given all of the work coming out of the node.js and Ruby camps, WordPress has got some stiff competition, and deservedly so.
@@ -16,10 +17,10 @@ While setting up a new Jekyll 3.0-powered site based on the Lanyon theme wasn't 
   _posts
     - tech
       - 2016-04-14-tech-post-title.md
-      - 2016-03-29-another-tech-post-title.md 
-    - travel 
+      - 2016-03-29-another-tech-post-title.md
+    - travel
       - 2016-04-10-travel-post-title.md
-      - 2016-03-09-another-travel-post-title.md 
+      - 2016-03-09-another-travel-post-title.md
 ```
 
 If you use Octopress, it's easy to create a new post in a category with this command
@@ -51,7 +52,7 @@ include: ["_pages"]
 I found that I needed Octopress and octopress-paginate to set up paginated categories. I created a new file in `_layouts` called category-page.html with this content
 
 ```html
-   
+
 ---
 layout: default
 ---
@@ -62,10 +63,10 @@ layout: default
         - Page {{paginator.page}}
       {% endif %}
   </h1>
-  
+
   <div class="posts">
-    {% assign index = true %} 
-    {% for post in paginator.posts %} 
+    {% assign index = true %}
+    {% for post in paginator.posts %}
     {% assign content = post.content %}
     <div class="post">
         <h2 class="post-title">
@@ -73,11 +74,11 @@ layout: default
             {{ post.title }}
           </a>
         </h2>
-        <span class="post-date">{{ post.date | date_to_string }}</span> 
+        <span class="post-date">{{ post.date | date_to_string }}</span>
         {{ post.excerpt }}
     </div>
     {% unless post == paginator.posts.last %}
-    	<hr> 
+    	<hr>
     {% endunless %}
     {% endfor %}
   </div>
@@ -129,4 +130,3 @@ Warning: Be sure to have a clean working environment by stashing/committing your
 
 [Pagespeed insights score](https://developers.google.com/speed/pagespeed/insights/?url=vinaygopinath.me) for the site:
 ![99/100 on both mobile and desktop](http://i.imgur.com/iJhrRzN.png)
-

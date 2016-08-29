@@ -1,7 +1,7 @@
 # Permalinks
 #
 # Use of `relative_permalinks` ensures post links from the index work properly.
-permalink: pretty
+permalink: /blog/:categories/:title/
 
 # Setup
 title: Vinay Gopinath
@@ -16,13 +16,13 @@ email:             vinay@vinaygopinath.me
 
 # Custom vars
 version:             1.0.0
-gems:                ["octopress-paginate"]
+gems:                ["octopress-paginate", "jekyll-redirect-from"]
 include: ["_pages"]
 exclude: ["lib", "config.rb", ".sass-cache", "Capfile", "config", "log", "Rakefile", "Rakefile.rb", "tmp", "Gemfile", "Gemfile.lock", "README.md", "LICENSE", "_drafts"]
 markdown: kramdown
 kramdown:
-input: GFM
-syntax_highlighter: rouge
+  input: GFM
+  syntax_highlighter: rouge
 
 pagination:
   limit: 10
@@ -39,4 +39,3 @@ defaults:
       path: ""
     values:
       description: "Vinay Gopinath's occasionally updated corner of the Internet"
-

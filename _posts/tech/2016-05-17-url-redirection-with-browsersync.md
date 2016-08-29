@@ -4,6 +4,7 @@ title: URL redirection with Browsersync
 categories: ["tech"]
 description: Redirect URLs to an alternate path on your localhost site with Browsersync
 date: 2016-05-17T16:57:05+02:00
+redirect_from: ["/tech/2016/05/17/url-redirection-with-browsersync/", "/tech/2016/05/17/url-redirection-with-browsersync"]
 ---
 
 I started working on [GapSquad's website](https://www.gapsquad.com) recently, and I had to redirect some URL requests in the Gulp+Browsersync dev environment to alternate paths in the project directory (to recreate the behaviour of the nginx production server). This can be done using [Browsersync options](https://www.browsersync.io/docs/options/).
@@ -62,4 +63,3 @@ browserSync.init({
     }
   });
 ```
-
