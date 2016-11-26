@@ -8,10 +8,22 @@
   p, li {
     text-align: justify;
     font-size: 16px;
-    line-height: 28px;
+    line-height: 26px;
   }
   li {
     margin-bottom: 10px;
+  }
+  img {
+    &.img-centered {
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+  .scrollable-code {
+    figure pre {
+      overflow-x: auto;
+      white-space: pre;
+    }
   }
 }
 
