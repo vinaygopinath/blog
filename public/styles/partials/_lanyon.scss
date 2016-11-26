@@ -23,7 +23,7 @@ $color_potters_clay_approx: #8f5536;
 $black_10: rgba(0, 0, 0, .1);
 
 //fonts
-$font_0: Noto Sans;
+$font_0: Roboto;
 $font_1: Georgia;
 $font_2: Times New Roman;
 $font_3: serif;
@@ -307,7 +307,7 @@ a {
 }
 
 @include critical(false) {
-    
+
     #sidebar-checkbox:checked + .sidebar {
   z-index: 10;
   visibility: visible;
@@ -318,7 +318,7 @@ a {
   transform: translateX(14rem);
 }
 
-    
+
     #sidebar-checkbox {
 	&:focus ~ .sidebar-toggle {
 		color: $white;
@@ -328,7 +328,7 @@ a {
 		}
 	}
 }
-    
+
     .related {
 	padding-top: 2rem;
 	padding-bottom: 2rem;
@@ -354,7 +354,7 @@ a {
 		}
 	}
 }
-    
+
     .layout-reverse {
 	.sidebar {
 		left: auto;
