@@ -3,7 +3,7 @@ layout: post
 title: Android app for Torun's city bike system
 categories: ["tech"]
 description: Explore Torun and locate nearby city bike stations with my free Android app
-date: 2016-11-21T22:17:40+02:00
+date: 2016-10-21T22:17:40+02:00
 ---
 
 I'm a big fan of Toruń, and I've spent a lot of time exploring the city over the last year. I'm also a big fan of cycling, so when Toruń's city bike system relaunched in March after its winter hiatus, I took to cycling around the city. As an outsider, it wasn't always easy locating the nearest bike station. Sometimes, I'd walk to a known station, only to find that there were no bikes. I couldn't find an app to help me out with the city bike system, so I [made one](https://play.google.com/store/apps/details?id=com.vinay.trm) myself that uses the data available on the website.
