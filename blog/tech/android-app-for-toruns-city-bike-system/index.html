@@ -15,12 +15,12 @@
   
   <title>
     
-    SEO in Angular2 with ng2-meta &middot; Vinay Gopinath
+    Android app for Torun's city bike system &middot; Vinay Gopinath
     
   </title>
-  <meta name="description" content="How to use ng2-meta to update meta tags in your Angular2 site and improve your SEO">
-  <meta name="og:description" content="How to use ng2-meta to update meta tags in your Angular2 site and improve your SEO">
-  <link rel="canonical" href="https://vinaygopinath.me/blog/tech/seo-in-angular2-with-ng2-meta/">
+  <meta name="description" content="Explore Torun and locate nearby city bike stations with my free Android app">
+  <meta name="og:description" content="Explore Torun and locate nearby city bike stations with my free Android app">
+  <link rel="canonical" href="https://vinaygopinath.me/blog/tech/android-app-for-toruns-city-bike-system/">
   
   <style type="text/css">
   
@@ -86,105 +86,24 @@ styles, `#sidebar-checkbox` for behavior. -->
 
     <div class="container content">
         <div class="post">
-  <h2 class="post-title">SEO in Angular2 with ng2-meta</h2>
-  <span class="post-date">25 Jul 2016</span>
-  <p>Updating meta tags such as title and description as the route changes is essential for SEO in any single page application. While building <a href="http://vinaygopinath.me/tech/2016/07/25/nomad-couple/">Nomad Couple</a>, an Angular2 site, I realized that there weren’t any Angular2 meta-tags libraries, so I decided to build one. I’ve released it as <a href="https://github.com/vinaygopinath/ng2-meta">ng2-meta</a> on npm.</p>
+  <h2 class="post-title">Android app for Torun's city bike system</h2>
+  <span class="post-date">21 Nov 2016</span>
+  <p>I’m a big fan of Toruń, and I’ve spent a lot of time exploring the city over the last year. I’m also a big fan of cycling, so when Toruń’s city bike system relaunched in March after its winter hiatus, I took to cycling around the city. As an outsider, it wasn’t always easy locating the nearest bike station. Sometimes, I’d walk to a known station, only to find that there were no bikes. I couldn’t find an app to help me out with the city bike system, so I <a href="https://play.google.com/store/apps/details?id=com.vinay.trm">made one</a> myself that uses the data available on the website.</p>
 
-<p>ng2-meta listens to router changes and updates <code class="highlighter-rouge">&lt;meta&gt;</code> tags with the values provided in the route’s configuration.</p>
+<p>The app uses the Google Maps Android API to show all the bike stations in the city as well as your current location. Using the Locate icon floating action button, you can locate the bike station that’s nearest to you from any location in the city.</p>
 
-<p>To get started, install ng2-meta</p>
+<p><a href="/public/images/trm-torun-app/home.png"><img src="/public/images/trm-torun-app/home.png" alt="TRM Torun Android app home screen" class="img-centered img-mobile" /></a></p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>npm install --save ng2-meta
-</code></pre>
-</div>
+<p>Once you’ve identified a bike station, you can check the number of available bikes, and use the Navigate icon floating action button to get walking directions to the station from Google Maps. The app is capable of working offline, using a cache of bike stations, but, needless to say, realtime bike availability information needs a working internet connection.</p>
 
-<p>Add a <code class="highlighter-rouge">data</code> object to each of your routes and define meta tags (title, description, url etc) relevant to the route.</p>
+<p><a href="/public/images/trm-torun-app/bike-info.png"><img src="/public/images/trm-torun-app/bike-info.png" alt="TRM Torun Android app bike station information" class="img-centered img-mobile" /></a></p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="kr">const</span> <span class="nx">routes</span><span class="err">:</span> <span class="nx">RouterConfig</span> <span class="o">=</span> <span class="p">[</span>
-  <span class="p">{</span>
-    <span class="na">path</span><span class="p">:</span> <span class="s1">'home'</span><span class="p">,</span>
-    <span class="na">component</span><span class="p">:</span> <span class="nx">HomeComponent</span><span class="p">,</span>
-    <span class="na">data</span><span class="p">:</span> <span class="p">{</span>
-      <span class="na">meta</span><span class="p">:</span> <span class="p">{</span>
-        <span class="na">title</span><span class="p">:</span> <span class="s1">'Home page'</span><span class="p">,</span>
-        <span class="na">description</span><span class="p">:</span> <span class="s1">'Description of the home page'</span>
-      <span class="p">}</span>
-    <span class="p">}</span>
-  <span class="p">},</span>
-  <span class="p">{</span>
-    <span class="na">path</span><span class="p">:</span> <span class="s1">'dashboard'</span><span class="p">,</span>
-    <span class="na">component</span><span class="p">:</span> <span class="nx">DashboardComponent</span><span class="p">,</span>
-    <span class="na">data</span><span class="p">:</span> <span class="p">{</span>
-      <span class="na">meta</span><span class="p">:</span> <span class="p">{</span>
-        <span class="na">title</span><span class="p">:</span> <span class="s1">'Dashboard'</span><span class="p">,</span>
-        <span class="na">description</span><span class="p">:</span> <span class="s1">'Description of the dashboard page'</span><span class="p">,</span>
-        <span class="s1">'og:image'</span><span class="p">:</span> <span class="s1">'http://example.com/dashboard-image.png'</span>
-      <span class="p">}</span>
-    <span class="p">}</span>
-  <span class="p">}</span>
-<span class="p">];</span>
-</code></pre>
-</div>
+<p><strong>Technical details</strong></p>
 
-<p>Inject Angular2’s <code class="highlighter-rouge">Title</code> service as well as ng2-meta’s <code class="highlighter-rouge">MetaService</code> into your app. ng2-meta uses the Title service internally to automatically change the page title when the <code class="highlighter-rouge">title</code> meta tag is updated.</p>
+<p>The app supports Android 4.0.3 (API Level 15 - Ice cream sandwich) and above, covering 98.6%+ of all Android devices <sup><a href="https://developer.android.com/about/dashboards/index.html">[1]</a></sup>. The context-aware floating action button, sliding bottom sheet and the themed action bar are based on <a href="https://developer.android.com/design/material/index.html">material design</a> guidelines. The app is compatible with the “new” permission system applicable to Android 6 and above: Devices running Android 6 (Marshmallow) and above use runtime permission requests, while all permissions must be granted at installation time on devices running older versions of Android.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">Title</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'@angular/platform-browser'</span><span class="p">;</span>
-<span class="kr">import</span> <span class="p">{</span> <span class="nx">MetaService</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'ng2-meta'</span><span class="p">;</span>
-<span class="p">...</span>
-<span class="nx">bootstrap</span><span class="p">(</span><span class="nx">AppComponent</span><span class="p">,</span> <span class="p">[</span>
-  <span class="nx">HTTP_PROVIDERS</span><span class="p">,</span>
-  <span class="p">...</span>
-  <span class="nx">Title</span><span class="p">,</span>
-  <span class="nx">MetaService</span>
-<span class="p">]);</span>
-</code></pre>
-</div>
+<p>Check out the TRM Torun on <a href="https://play.google.com/store/apps/details?id=com.vinay.trm">Google Play</a></p>
 
-<p>Add MetaService as a provider to your root component</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">MetaService</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'ng2-meta'</span><span class="p">;</span>
-
-<span class="err">@</span><span class="nx">Component</span><span class="p">({</span>
-  <span class="p">...</span>
-  <span class="na">providers</span><span class="p">:</span> <span class="p">[</span><span class="nx">MetaService</span><span class="p">]</span>
-<span class="p">})</span>
-</code></pre>
-</div>
-
-<p>If you’d like to update the page title and meta tags from a component or service, say, after receiving data from a HTTP call, you can use <code class="highlighter-rouge">MetaService</code>.</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="kr">class</span> <span class="nx">ProductComponent</span> <span class="p">{</span>
-  <span class="p">...</span>
-  <span class="nx">constructor</span><span class="p">(</span><span class="kr">private</span> <span class="nx">metaService</span><span class="err">:</span> <span class="nx">MetaService</span><span class="p">)</span> <span class="p">{}</span>
-
-  <span class="nx">ngOnInit</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">product</span> <span class="o">=</span> <span class="c1">//HTTP GET for product in catalogue</span>
-    <span class="nx">metaService</span><span class="p">.</span><span class="nx">setTitle</span><span class="p">(</span><span class="s1">'Product page for '</span><span class="o">+</span><span class="k">this</span><span class="p">.</span><span class="nx">product</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
-    <span class="nx">metaService</span><span class="p">.</span><span class="nx">setTag</span><span class="p">(</span><span class="s1">'og:image'</span><span class="p">,</span><span class="k">this</span><span class="p">.</span><span class="nx">product</span><span class="p">.</span><span class="nx">imageURL</span><span class="p">);</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</code></pre>
-</div>
-
-<p>It’s a good idea to add some fallback meta tags for use by crawlers that don’t execute Javascript, like Facebook and Twitter.</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;html&gt;</span>
- <span class="nt">&lt;head&gt;</span>
-  <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"title"</span> <span class="na">content=</span><span class="s">"Website Name"</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"og:title"</span> <span class="na">content=</span><span class="s">"Website Name"</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"description"</span> <span class="na">content=</span><span class="s">"General site description"</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"og:description"</span> <span class="na">content=</span><span class="s">"General site description"</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"og:image"</span> <span class="na">content=</span><span class="s">"http://abc.com/general-image.png"</span><span class="nt">&gt;</span>
- <span class="nt">&lt;/head&gt;</span>
-<span class="nt">&lt;/html&gt;</span>
-</code></pre>
-</div>
-<p>The fallback meta tags are used to generate the rich snippet shown when your website is shared on Facebook (Just make sure to add <a href="http://ogp.me/">Open graph</a> meta tags).
-<a href="/public/images/ng2-meta/facebook-share.png"><img src="/public/images/ng2-meta/facebook-share.png" alt="Nomad Couple - Facebook share rich snippet" /></a></p>
-
-<p>Check out <a href="https://vinaygopinath.github.io/NomadCouple/">Nomad Couple</a> as a demo of ng2-meta. Its source code is available <a href="https://github.com/vinaygopinath/NomadCouple">here</a>.</p>
-
-<p>I’m currently investigating server-side rendering using <a href="https://github.com/angular/universal">angular/universal</a> and plan to update ng2-meta to support it.</p>
 
 </div>
 
@@ -210,8 +129,8 @@ styles, `#sidebar-checkbox` for behavior. -->
       "@type": "ListItem",
       "position": 3,
       "item": {
-        "@id": "https://vinaygopinath.me/blog/tech/seo-in-angular2-with-ng2-meta/",
-        "name": "SEO in Angular2 with ng2-meta"
+        "@id": "https://vinaygopinath.me/blog/tech/android-app-for-toruns-city-bike-system/",
+        "name": "Android app for Torun's city bike system"
       }
     }]
   }
@@ -220,8 +139,8 @@ styles, `#sidebar-checkbox` for behavior. -->
 <div id="disqus_thread"></div>
 <script>
   var disqus_config = function () {
-    this.page.url = 'https://vinaygopinath.me/blog/tech/seo-in-angular2-with-ng2-meta/';
-    this.page.identifier = '/blog/tech/seo-in-angular2-with-ng2-meta/';
+    this.page.url = 'https://vinaygopinath.me/blog/tech/android-app-for-toruns-city-bike-system/';
+    this.page.identifier = '/blog/tech/android-app-for-toruns-city-bike-system/';
   };
   (function() {
     var d = document, s = d.createElement('script');
@@ -247,18 +166,18 @@ Social media rich snippets with AngularJS and ngMeta
 
 <li>
 <h3>
-<a href="/blog/tech/android-app-for-toruns-city-bike-system/">
-Android app for Torun's city bike system
-<small>21 Nov 2016</small>
+<a href="/blog/travel/overheard-in-lodz/">
+Overheard in Łódź
+<small>25 Aug 2016</small>
 </a>
 </h3>
 </li>
 
 <li>
 <h3>
-<a href="/blog/travel/overheard-in-lodz/">
-Overheard in Łódź
-<small>25 Aug 2016</small>
+<a href="/blog/tech/seo-in-angular2-with-ng2-meta/">
+SEO in Angular2 with ng2-meta
+<small>25 Jul 2016</small>
 </a>
 </h3>
 </li>

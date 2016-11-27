@@ -4,7 +4,7 @@
  <title>Vinay Gopinath</title>
  <link href="/atom.xml" rel="self"/>
  <link href="/"/>
- <updated>2016-11-26T16:01:50+01:00</updated>
+ <updated>2016-11-27T02:00:25+01:00</updated>
  <id></id>
  <author>
    <name></name>
@@ -50,6 +50,30 @@
 &lt;/div&gt;
 
 &lt;p&gt;Feel free to check out the source code of the &lt;a href=&quot;https://vinaygopinath.github.io/ngMeta/#/&quot;&gt;ngMeta demo site&lt;/a&gt;. I’ve just updated it with fallback meta tags.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Android app for Torun's city bike system</title>
+   <link href="/blog/tech/android-app-for-toruns-city-bike-system/"/>
+   <updated>2016-11-21T21:17:40+01:00</updated>
+   <id>/blog/tech/android-app-for-toruns-city-bike-system</id>
+   <content type="html">&lt;p&gt;I’m a big fan of Toruń, and I’ve spent a lot of time exploring the city over the last year. I’m also a big fan of cycling, so when Toruń’s city bike system relaunched in March after its winter hiatus, I took to cycling around the city. As an outsider, it wasn’t always easy locating the nearest bike station. Sometimes, I’d walk to a known station, only to find that there were no bikes. I couldn’t find an app to help me out with the city bike system, so I &lt;a href=&quot;https://play.google.com/store/apps/details?id=com.vinay.trm&quot;&gt;made one&lt;/a&gt; myself that uses the data available on the website.&lt;/p&gt;
+
+&lt;p&gt;The app uses the Google Maps Android API to show all the bike stations in the city as well as your current location. Using the Locate icon floating action button, you can locate the bike station that’s nearest to you from any location in the city.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/public/images/trm-torun-app/home.png&quot;&gt;&lt;img src=&quot;/public/images/trm-torun-app/home.png&quot; alt=&quot;TRM Torun Android app home screen&quot; class=&quot;img-centered img-mobile&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Once you’ve identified a bike station, you can check the number of available bikes, and use the Navigate icon floating action button to get walking directions to the station from Google Maps. The app is capable of working offline, using a cache of bike stations, but, needless to say, realtime bike availability information needs a working internet connection.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/public/images/trm-torun-app/bike-info.png&quot;&gt;&lt;img src=&quot;/public/images/trm-torun-app/bike-info.png&quot; alt=&quot;TRM Torun Android app bike station information&quot; class=&quot;img-centered img-mobile&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Technical details&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;The app supports Android 4.0.3 (API Level 15 - Ice cream sandwich) and above, covering 98.6%+ of all Android devices &lt;sup&gt;&lt;a href=&quot;https://developer.android.com/about/dashboards/index.html&quot;&gt;[1]&lt;/a&gt;&lt;/sup&gt;. The context-aware floating action button, sliding bottom sheet and the themed action bar are based on &lt;a href=&quot;https://developer.android.com/design/material/index.html&quot;&gt;material design&lt;/a&gt; guidelines. The app is compatible with the “new” permission system applicable to Android 6 and above: Devices running Android 6 (Marshmallow) and above use runtime permission requests, while all permissions must be granted at installation time on devices running older versions of Android.&lt;/p&gt;
+
+&lt;p&gt;Check out the TRM Torun on &lt;a href=&quot;https://play.google.com/store/apps/details?id=com.vinay.trm&quot;&gt;Google Play&lt;/a&gt;&lt;/p&gt;
+
 </content>
  </entry>
  
