@@ -4,7 +4,7 @@
  <title>Vinay Gopinath</title>
  <link href="/atom.xml" rel="self"/>
  <link href="/"/>
- <updated>2016-11-27T02:02:50+01:00</updated>
+ <updated>2016-11-27T02:28:45+01:00</updated>
  <id></id>
  <author>
    <name></name>
@@ -72,7 +72,7 @@
 
 &lt;p&gt;The app supports Android 4.0.3 (API Level 15 - Ice cream sandwich) and above, covering 98.6%+ of all Android devices &lt;sup&gt;&lt;a href=&quot;https://developer.android.com/about/dashboards/index.html&quot;&gt;[1]&lt;/a&gt;&lt;/sup&gt;. The context-aware floating action button, sliding bottom sheet and the themed action bar are based on &lt;a href=&quot;https://developer.android.com/design/material/index.html&quot;&gt;material design&lt;/a&gt; guidelines. The app is compatible with the “new” permission system applicable to Android 6 and above: Devices running Android 6 (Marshmallow) and above use runtime permission requests, while all permissions must be granted at installation time on devices running older versions of Android.&lt;/p&gt;
 
-&lt;p&gt;Check out the TRM Torun on &lt;a href=&quot;https://play.google.com/store/apps/details?id=com.vinay.trm&quot;&gt;Google Play&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Check out TRM Torun on &lt;a href=&quot;https://play.google.com/store/apps/details?id=com.vinay.trm&quot;&gt;Google Play&lt;/a&gt;&lt;/p&gt;
 
 </content>
  </entry>
