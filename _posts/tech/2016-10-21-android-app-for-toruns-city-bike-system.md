@@ -20,5 +20,5 @@ Once you've identified a bike station, you can check the number of available bik
 
 The app supports Android 4.0.3 (API Level 15 - Ice cream sandwich) and above, covering 98.6%+ of all Android devices <sup>[[1]](https://developer.android.com/about/dashboards/index.html)</sup>. The context-aware floating action button, sliding bottom sheet and the themed action bar are based on [material design](https://developer.android.com/design/material/index.html) guidelines. The app is compatible with the "new" permission system applicable to Android 6 and above: Devices running Android 6 (Marshmallow) and above use runtime permission requests, while all permissions must be granted at installation time on devices running older versions of Android.
 
-Check out the TRM Torun on [Google Play](https://play.google.com/store/apps/details?id=com.vinay.trm)
+Check out TRM Torun on [Google Play](https://play.google.com/store/apps/details?id=com.vinay.trm)
 
