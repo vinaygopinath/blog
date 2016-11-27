@@ -109,6 +109,11 @@ and (max-device-width: 990px) {
     width: 75vw;
     height: 75vh;
   }
+  .post {
+    img.img-mobile {
+      max-width: 80%;
+    }
+  }
 }
 
 @media only screen
@@ -116,5 +121,10 @@ and (min-device-width: 991px) {
   .home {
     width: 60vw;
     height: 60vh;
+  }
+  .post {
+    img.img-mobile {
+      max-width: 45%;
+    }
   }
 }
